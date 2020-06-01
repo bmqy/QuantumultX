@@ -1,23 +1,23 @@
 /*
 小鸡模拟器签到、存档续期脚本
 
-更新时间: 2020.5.27 21:56
+更新时间: 2020.6.1 10:40
 脚本兼容: QuantumultX(其它自测)
 电报频道: @哇哈哈
 
 说明：
-打开小鸡模拟器->管理->每日签到，如通知成功获取cookie, 则可以使用此签到脚本.
-获取Cookie后, 请将Cookie脚本禁用并移除主机名，以免产生不必要的MITM.
+打开小鸡模拟器->管理->存档管理，如通知成功获取续期参数, 则可以使用此续期脚本.
+获取续期参数后, 请将续期脚本禁用并移除主机名，以免产生不必要的MITM.
 
-脚本将在每隔15天凌晨1点执行。 您可以修改执行时间。
+脚本将在每月1号、15号7点执行。 您可以修改执行时间。
 
 ************************
 QuantumultX 本地脚本配置:
 ************************
 
 [task_local]
-# 小鸡模拟器签到、存档续期
-0 1 7 * * bmqy/xjmnq/renew.js
+# 小鸡模拟器存档续期
+0 7 1,15 * * bmqy/xjmnq/renew.js
 
 [rewrite_local]
 # 获取续期参数
@@ -43,19 +43,18 @@ var data = parseJsonstr2FormData($nobyda.read(CookieKey));
   var bonus = {
     url: 'https://client.vgabc.com/clientapi/',
     body: data,
-headers:{
-Cookie: 'think_language=zh-Hans-CN',
-'User-Agent': 'Chick/1.5.8beta (iPhone; iOS 13.4.1; Scale/3.00)',
-'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
-'Accept-Language': 'zh-Hans-CN;q=1'
-
-}
+    headers:{
+      Cookie: 'think_language=zh-Hans-CN',
+      'User-Agent': 'Chick/1.5.8beta (iPhone; iOS 13.4.1; Scale/3.00)',
+      'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+      'Accept-Language': 'zh-Hans-CN;q=1'
+    }
   };
   $nobyda.post(bonus, function(error, response, data) {
     if (error) {
       $nobyda.notify(ScriptTitle, "请求失败 ‼️‼️", error)
     } else {
-data = JSON.parse(data);
+      data = JSON.parse(data);
       if (data && data.status) {
         $nobyda.notify(ScriptTitle, "", date.getMonth() + 1 + "月" + date.getDate() + "日, 成功 🎉")
       } else {
@@ -74,7 +73,7 @@ function GetRenewParameter() {
       if(data && data.ticket){
         var CookieValue = {
           action: 'archive_renew',
-'clientparams':'1.5.8beta|13.4.1|zh|iPhone9,2|414*736|ios1.1|webTB21',
+          'clientparams':'1.5.8beta|13.4.1|zh|iPhone9,2|414*736|ios1.1|webTB21',
           model: 'appstore',
           uid: data.uid,
           ticket: data.ticket,
@@ -98,7 +97,7 @@ function GetRenewParameter() {
         }
       }
     } else {
-        $nobyda.notify(ScriptTitle + "写入参数失败", "", "请检查匹配URL或配置内脚本类型 ‼️");
+      $nobyda.notify(ScriptTitle + "写入参数失败", "", "请检查匹配URL或配置内脚本类型 ‼️");
     }
   } catch (eor) {
     $nobyda.notify(ScriptTitle + "写入参数失败", "", "未知错误 ‼️")
@@ -113,22 +112,19 @@ function parseFormData2Json(str){
     let a = e.split('=');
     o[a[0]] = a[1];
   });
-
   return o;
 }
 
 function parseJsonstr2FormData(str){
-
   var j = JSON.parse(str);
-var d = '';
-for(let k in j){
-if(d == ''){
-d += k +'='+ j[k];
-} else {
-d += '&'+ k +'='+ j[k];
-}
-}
- 
+  var d = '';
+  for(let k in j){
+    if(d == ''){
+      d += k +'='+ j[k];
+    } else {
+      d += '&'+ k +'='+ j[k];
+    }
+  }  
   return d;
 }
 
