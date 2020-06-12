@@ -1,37 +1,39 @@
 /*
 更新时间: 2020-06-08 20:45
+
 腾讯新闻签到修改版，可以自动阅读文章获取红包，该活动为瓜分百万阅读红包挑战赛，针对幸运用户参与
+
 获取Cookie方法:
 1.把以下配置复制到响应配置下
 2.打开腾讯新闻app，阅读几篇文章，倒计时结束后即可获取阅读Cookie;
 3.脚本运行一次阅读一篇文章，请不要连续运行，防止封号，可设置每几分钟运行一次
 4.可能腾讯有某些限制，有些号码无法领取红包，手动阅读几篇，能领取红包，一般情况下都是正常的，
 5.此脚本根据阅读篇数开启通知，默认20篇，此版本和另一版本相同
-6.版本更新日志:
-v0606.1 修复无法自动获取视频红包，修改通知为阅读红包到账通知，或者自定义常开
+版本更新日志:
+ v0606.1 修复无法自动获取视频红包，修改通知为阅读红包到账通知，或者自定义常开
 
 ---------------------
 Surge 4.0
 [Script]
-腾讯新闻 = type=cron,cronexp=0 8 0 * * *,script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/txnews.js,script-update-interval=0
+腾讯新闻 = type=cron,cronexp=0 8 0 * * *,script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/txnews2.js,script-update-interval=0
 
-腾讯新闻 = type=http-request,pattern=https:\/\/api\.inews\.qq\.com\/event\/v1\/user\/event\/report\?,script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/txnews.js
+腾讯新闻 = type=http-request,pattern=https:\/\/api\.inews\.qq\.com\/event\/v1\/user\/event\/report\?,script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/txnews2.js
 
 ~~~~~~~~~~~~~~~~~~~~~
 Loon 2.1.0+
 [Script]
 # 本地脚本
-cron "04 00 * * *" script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/txnews.js, enabled=true, tag=腾讯新闻
+cron "04 00 * * *" script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/txnews2.js, enabled=true, tag=腾讯新闻
 
-http-request https:\/\/api\.inews\.qq\.com\/event\/v1\/user\/event\/report\? script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/txnews.js
+http-request https:\/\/api\.inews\.qq\.com\/event\/v1\/user\/event\/report\? script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/txnews2.js
 
 -----------------
 
 QX 1.0.7+ :
  [task_local]
-0 9 * * * txnews.js, tag=腾讯新闻
+0 9 * * * txnews2.js, tag=腾讯新闻
  [rewrite_local]
-https:\/\/api\.inews\.qq\.com\/event\/v1\/user\/event\/report\? url script-request-header txnews.js
+https:\/\/api\.inews\.qq\.com\/event\/v1\/user\/event\/report\? url script-request-header txnews2.js
 
 ~~~~~~~~~~~~~~~~~~
  [MITM]
@@ -42,12 +44,12 @@ hostname = api.inews.qq.com
 Cookie获取后，请注释掉Cookie地址。
 
 */
-const notify = 0; //开启通知1，关闭为0
-const logs = 0; // 日志开关，0为关，1为开
+const notify = 0; //通知开为1，常关为0
+const logs = 0; // 日志开关
 const cookieName = '腾讯新闻'
 const sy = init()
-const signurlVal = sy.getdata('sy_signurl_txnews')
-const cookieVal = sy.getdata( 'sy_cookie_txnews')
+const signurlVal = sy.getdata('sy_signurl_txnews2')
+const cookieVal = sy.getdata( 'sy_cookie_txnews2')
 
 let isGetCookie = typeof $request !== 'undefined'
 if (isGetCookie) {
@@ -62,8 +64,8 @@ if ($request && $request.method != 'OPTIONS' && $request.url.match(/user\/event\
   const cookieVal = $request.headers['Cookie'];
   sy.log(`signurlVal:${signurlVal}`)
   sy.log(`cookieVal:${cookieVal}`)
-  if (signurlVal) sy.setdata(signurlVal, 'sy_signurl_txnews')
-  if (cookieVal) sy.setdata(cookieVal,  'sy_cookie_txnews')
+  if (signurlVal) sy.setdata(signurlVal, 'sy_signurl_txnews2')
+  if (cookieVal) sy.setdata(cookieVal,  'sy_cookie_txnews2')
   sy.msg(cookieName, `获取Cookie: 成功🎉`, ``)
   }
  }
@@ -92,7 +94,7 @@ function getsign() {
        next = obj.data.next_points
        tip =  obj.data.tip_soup
        Dictum = tip.replace(/[\<|\.|\>|br]/g,"")+""+obj.data.author.replace(/[\<|\.|\>|br|图|腾讯网友]/g,"")
-       signinfo =  '【签到信息】连续签到' + obj.data.signin_days+'天 明日+'+ next +'金币 成功🎉\n'}
+       signinfo =  '【签到信息】连续签到' + obj.data.signin_days+'天 '+'明日+'+ next +'金币 成功🎉\n'}
       else {
        sy.msg('签到失败，🉐登录腾讯新闻app获取cookie', "", "")
        console.log('签到失败，🉐登录腾讯新闻app获取cookie'+data)
@@ -113,7 +115,7 @@ return new Promise((resolve, reject) => {
    sy.post(toreadUrl,(error, response, data) =>{
      if(logs)sy.log(`${cookieName}阅读文章 - data: ${data}`)
        toread = JSON.parse(data)
-  try {
+try {
    if
 (toread.info=='success'&&toread.data.activity.id)   {
      RedID = toread.data.activity.id
@@ -142,7 +144,7 @@ function lookVideo() {
         if(logs)sy.log(`${cookieName}观看视频 - data: ${data}`)
        tolookresult = JSON.parse(data)
       if(tolookresult.info=='success'){
-       RedID = tolookresult.data.activity.id
+        RedID = tolookresult.data.activity.id
         videocoins = tolookresult.data.countdown_timer.countdown_tips
      }
     }
@@ -158,8 +160,8 @@ function StepsTotal() {
 return new Promise((resolve, reject) => {
   const StepsUrl = {
     url: `https://api.inews.qq.com/activity/v1/activity/info/get?activity_id=${RedID}&${ID}`,
-   headers: {Cookie: cookieVal},
-  };
+   headers: {Cookie: cookieVal}
+  }
     sy.get(StepsUrl, (error, response, data) => {
      if(logs)sy.log(`${cookieName}红包统计- data: ${data}`)
        totalred = JSON.parse(data)
@@ -186,14 +188,14 @@ totalred.data.award[i].title.split("，")[0].replace(/[\u4e00-\u9fa5]/g,``)
 }
 
 function StepsTotal2() {
-  const ID =  signurlVal.match(/devid=[a-zA-Z0-9_-]+/g)
+ const ID = signurlVal.match(/devid=[a-zA-Z0-9_-]+/g)
 return new Promise((resolve, reject) => {
   const StepsUrl = {
     url: `https://api.inews.qq.com/activity/v1/activity/notice/info?activity_id=${RedID}&${ID}`,
    headers: {Cookie: cookieVal},
   };
     sy.get(StepsUrl, (error, response, data) => {
-     if(logs)sy.log(`${cookieName}阅读统计- data: ${data}`)
+     if(logs)sy.log(`${cookieName}阅读统计- data: ${data}\n`)
        totalnum = JSON.parse(data)
         if (totalnum.ret == 0){
         readnum =  totalnum.data.show_list[0].schedule.current
@@ -221,6 +223,7 @@ function RednumCheck() {
    }
   }
 }
+
 //阶梯红包到账
 function Redpack() {
    ID = signurlVal.match(/devid=[a-zA-Z0-9_-]+/g)
@@ -233,16 +236,16 @@ return new Promise((resolve, reject) => {
    sy.post(cashUrl, (error, response, data) => {
     if(logs)sy.log(`${cookieName}阅读红包- data: ${data}`)
         let rcash = JSON.parse(data)
-            readredpack =  Number()
-            redpackres =``
+            readredpack = Number()
+            redpackres = ``
         if (rcash.ret == 0){
        for (i=0;i<rcash.data.award.length;i++){
         readredpack += rcash.data.award[i].num/100
             }
        redpackres += `【阅读红包】到账`+readredpack+` 元 🌷\n` 
            }
-    sy.log(redpackres)
       resolve()
+sy.log(redpackres)
       })
    })
 }
@@ -259,8 +262,8 @@ return new Promise((resolve, reject) => {
     sy.post(cashUrl, (error, response, data) => {
     if(logs)sy.log(`${cookieName}视频红包-data:${data}`)
         let vcash = JSON.parse(data)
-            videoredpack= Number()
-            redpackres =``
+            redpackres = ``
+            videoredpack = Number()
         if (vcash.ret == 0){
        for (i=0;i<vcash.data.award.length;i++){
         videoredpack += vcash.data.award[i].num/100
@@ -268,7 +271,7 @@ return new Promise((resolve, reject) => {
         redpackres += `【视频红包】到账`+videoredpack+` 元 🌷\n` 
          }
        },100)
-    sy.log(redpackres)
+   sy.log(redpackres)
      resolve()
       })
    })
@@ -284,7 +287,7 @@ return new Promise((resolve, reject) => {
     if (error) {
       sy.msg("获取收益信息失败‼️", "", error)
     } else {
-    //if (logs) console.log("获取收益信息" +data)
+    if (logs) console.log("获取收益信息" +data)
      const obj = JSON.parse(data)
       subTile = '【收益总计】'+obj.data.wealth[0].title +'金币  '+"现金: " +obj.data.wealth[1].title+'元'
       }
@@ -309,7 +312,6 @@ function showmsg() {
  })
 resolve()
 }
-
 
 
 function init() {
