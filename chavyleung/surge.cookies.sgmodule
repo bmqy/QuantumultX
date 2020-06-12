@@ -14,7 +14,6 @@ Rewrite: BiliBili = type=http-request,pattern=^https:\/\/(www|live)\.bilibili\.c
 Rewrite: CSDN = type=http-request,pattern=^https:\/\/gw.csdn.net\/mini-app\/v2\/lucky_draw\/login\/sign_in\?,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/csdn/csdn.cookie.js
 Rewrite: CSDN = type=http-request,pattern=^https:\/\/passport.csdn.net\/v2\/api\/app\/login\/checkAndRefreshToken,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/csdn/csdn.cookie.js
 Rewrite: V2EX = type=http-request,pattern=^https:\/\/www\.v2ex\.com\/mission\/daily,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/v2ex/v2ex.cookie.js
-Rewrite: WPS = type=http-request,pattern=^https:\/\/zt.wps.cn\/2018\/clock_in\/api\/sign_up,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/wps/wps.cookie.js
 Rewrite: WPS = type=http-request,pattern=^https:\/\/zt.wps.cn\/2018\/docer_check_in\/api\/act_list,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/wps/wps.cookie.js
 Rewrite: 懂球帝 = type=http-request,pattern=^https:\/\/api\.dongqiudi\.com\/v2\/user\/is_login,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/dongqiudi/dongqiudi.cookie.js
 Rewrite: 电信营业厅 = type=http-request,pattern=^https:\/\/wapside.189.cn:9001\/api\/home\/sign,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/10000/10000.cookie.js,requires-body=true
@@ -54,7 +53,7 @@ Rewrite: 顺丰速运 = type=http-request,pattern=^https:\/\/sf-integral-sign-in
 Rewrite: 腾讯视频 = type=http-request,pattern=^https:\/\/access.video.qq.com\/user\/auth_refresh,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/videoqq/videoqq.cookie.js
 Rewrite: 网易新闻 = type=http-request,pattern=^https:\/\/v6-c\.m\.163\.com\/uc\/api\/sign\/v3\/commit,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/neteasenews/neteasenews.cookie.js,requires-body=true
 Rewrite: 网易考拉 = type=http-request,pattern=^https:\/\/m-bean\.kaola\.com/m/point/sign\.html,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/wykl/wykl.cookie.js,requires-body=true
-Rewrite: 蔚来 = type=http-request,pattern=^https:\/\/app\.nio\.com\/api\/1\/app\/daily_checkin,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/nip/nio.cookie.js
+Rewrite: 蔚来 = type=http-request,pattern=^https:\/\/app\.nio\.com\/api\/1\/app\/daily_checkin,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/nio/nio.cookie.js
 Rewrite: 喜马拉雅 = type=http-request,pattern=^https?:\/\/.*\/mobile\-user\/homePage\/.*,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/ximalaya/ximalaya.cookie.js
 Rewrite: 字幕组 = type=http-request,pattern=^http:\/\/ios.zmzapi.com\/index.php.*a=(mobile_)?login,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/zimuzu/zimuzu.cookie.js
 Rewrite: 字幕组 = type=http-request,pattern=^https?:\/\/(www\.)?rrys2019\.com\/?.?,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/zimuzu/zimuzu.cookie.js
