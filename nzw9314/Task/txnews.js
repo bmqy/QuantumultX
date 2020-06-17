@@ -43,7 +43,7 @@ Cookie获取后，请注释掉Cookie地址。
 
 */
 const notify = 0; //开启通知1，关闭为0
-const logs = 0; // 日志开关，0为关，1为开
+const logs = 1; // 日志开关，0为关，1为开
 const cookieName = '腾讯新闻'
 const sy = init()
 const signurlVal = sy.getdata('sy_signurl_txnews')
