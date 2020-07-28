@@ -34,3 +34,7 @@
 * [@KOP-XIAO](https://github.com/KOP-XIAO)
 
 * [@nzw9314](https://github.com/nzw9314)
+
+* [@zZPiglet](https://github.com/zZPiglet)
+
+* [@evilbutche](https://github.com/evilbutche)
