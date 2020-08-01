@@ -2,7 +2,7 @@
   "id": "bmqy.app.sub",
   "name": "bmqy应用订阅",
   "author": "@bmqy",
-  "icon": "avatars3.githubusercontent.com/u/7834895?s=200&v=4",
+  "icon": "https://avatars2.githubusercontent.com/u/7834895",
   "repo": "https://github.com/bmqy/QuantumultX",
   "apps": [
     {
