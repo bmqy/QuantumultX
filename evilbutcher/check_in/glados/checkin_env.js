@@ -14,18 +14,22 @@ GitHub: Neurogram-R
 
 ————————————————————
 
+【机场签到Cookie版】修改自Neurogram
 Modified by evilbutcher
 
-用chavy大佬的env修改了此脚本，支持Quantumult X和Loon，并支持BoxJs
+【仓库地址】https://github.com/evilbutcher/Quantumult_X/tree/master（欢迎star🌟）
 
-自行写cron，例如“0 1 0 * * *”
+【BoxJs】https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/evilbutcher.boxjs.json
 
-脚本地址：https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/glados/checkin_env.js
+【致谢】
+使用Chavy的Env.js修改了原脚本，支持Quantumult X和Loon，并支持BoxJs
 
-BoxJs订阅：https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/evilbutcher.boxjs.json
+
+自行写cron，例如 0 1 0 * * * https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/glados/checkin_env.js
 
 */
 const $ = new Env("机场签到");
+$.autoLogout = false;
 
 if (
   $.getdata("evil_checkintitle") != undefined &&
@@ -67,30 +71,7 @@ if (
   $.msg("机场签到", "", "请在 BoxJs 检查填写是否正确", "https://8.8.8.8/home");
 }
 
-/*
-const accounts = [
-  [
-    "隔壁西站",
-    "https://pro.crosswall.cc/auth/login",
-    "email",
-    "password"
-  ],
-  [
-    "猪的免费大飞机",
-    "https://forever.fpork.com/auth/login",
-    "email",
-    "password"
-  ]
-  [
-    "cccat",
-    "https://cccat.io/user/login.php",
-    "email",
-    "password"
-  ]
-];
-*/
-
-const autoLogout = false;
+$.autoLogout = JSON.parse($.getdata("evil_autoLogout") || $.autoLogout);
 
 function launch() {
   for (var i in accounts) {
@@ -98,16 +79,16 @@ function launch() {
     let url = urls[i];
     let email = emails[i];
     let password = passwords[i];
-    if (autoLogout) {
+    if ($.autoLogout) {
       let logoutPath =
         url.indexOf("auth/login") != -1 ? "user/logout" : "user/logout.php";
-      $.get(
-        url.replace(/(auth|user)\/login(.php)*/g, "") + logoutPath,
-        function(error, response, data) {
-          console.log(response);
-          login(url, email, password, title);
-        }
-      );
+      var logouturl = {
+        url: url.replace(/(auth|user)\/login(.php)*/g, "") + logoutPath
+      };
+      console.log(logouturl)
+      $.get(logouturl, function(error, response, data) {
+        login(url, email, password, title);
+      });
     } else {
       checkin(url, email, password, title);
     }
@@ -124,6 +105,7 @@ function login(url, email, password, title) {
     url: url.replace(/(auth|user)\/login(.php)*/g, "") + loginPath,
     body: `email=${email}&passwd=${password}&rumber-me=week`
   };
+  console.log(table)
   $.post(table, function(error, response, data) {
     if (error) {
       console.log(error);
@@ -134,6 +116,7 @@ function login(url, email, password, title) {
           /邮箱或者密码错误|Mail or password is incorrect/
         )
       ) {
+        console.log(response);
         $.msg(title + "邮箱或者密码错误", "", "");
       } else {
         checkin(url, email, password, title);
@@ -148,6 +131,7 @@ function checkin(url, email, password, title) {
   var checkinreqest = {
     url: url.replace(/(auth|user)\/login(.php)*/g, "") + checkinPath
   };
+  console.log(checkinreqest)
   $.post(checkinreqest, (error, response, data) => {
     if (error) {
       console.log(error);
@@ -167,6 +151,7 @@ function dataResults(url, checkinMsg, title) {
   var datarequest = {
     url: url.replace(/(auth|user)\/login(.php)*/g, "") + userPath
   };
+  console.log(datarequest)
   $.get(datarequest, (error, response, data) => {
     let resultData = "";
     let result = [];
@@ -225,7 +210,7 @@ function flowFormat(data) {
   return flow[0] + "B";
 }
 
-//chavyleung
+//From chavyleung's Env.js
 function Env(s) {
   (this.name = s),
     (this.data = null),

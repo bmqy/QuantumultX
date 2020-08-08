@@ -14,15 +14,21 @@ GitHub: Neurogram-R
 
 ————————————————————
 
+【机场签到Cookie版】修改自Neurogram
 Modified by evilbutcher
 
-用chavy大佬的env修改了此脚本，支持Quantumult X和Loon，并支持BoxJs
+【仓库地址】https://github.com/evilbutcher/Quantumult_X/tree/master（欢迎star🌟）
+
+【BoxJs】https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/evilbutcher.boxjs.json
+
+【致谢】
+使用Chavy的Env.js修改了原脚本，支持Quantumult X和Loon，并支持BoxJs
+
 
 【此版本为尝试用Cookie签到，针对有登陆验证或跳转的机场】
 
-⚠️【必读】⚠️此处说明过的内容将不再解答‼️
-⚠️【必读】⚠️此处说明过的内容将不再解答‼️
-⚠️【必读】⚠️此处说明过的内容将不再解答‼️
+⚠️【必读】⚠️【必读】⚠️【必读】⚠️
+‼️此处说明过的内容将不再解答‼️
 
 ①需要将你的将机场域名加入mitm，例如cccat的域名为cccat.io，则hostname = cccat.io
 
@@ -59,10 +65,6 @@ cron "5 0 * * *" tag=机场签到Cookie版, script-path=https://raw.githubuserco
 
 ⑤此时返回BoxJs中查看，Cookie和URL都有数据，即可保存会话。如有需要再重复1-4，获取第二个机场的Cookie（记得更改url为第二个机场对应的登陆链接）。
 
-脚本地址：https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/glados/checkincookie_env.js
-
-BoxJs订阅：https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/evilbutcher.boxjs.json
-
 */
 const $ = new Env("机场签到Cookie版");
 const signurl = "evil_checkinurl";
@@ -89,7 +91,14 @@ var sicookie = $.getdata(signcookie);
       "https://8.8.8.8/home"
     );
   }
-  checkin(siurl, sicookie);
+  var name = $.getdata("evil_checkincktitle")
+  if (
+    name == undefined ||
+    name == ""
+  ) {
+    name = "机场签到Cookie版"
+  }
+  checkin(siurl, sicookie, name);
 })()
   .catch(e => {
     $.log("", `❌失败! 原因: ${e}!`, "");
@@ -98,7 +107,7 @@ var sicookie = $.getdata(signcookie);
     $.done();
   });
 
-function checkin(url, cookie) {
+function checkin(url, cookie, name) {
   let checkinPath =
     url.indexOf("auth/login") != -1 ? "user/checkin" : "user/_checkin.php";
   var checkinurl = url.replace(/(auth|user)\/login(.php)*/g, "") + checkinPath;
@@ -110,10 +119,10 @@ function checkin(url, cookie) {
   $.post(checkinrequest, (error, response, data) => {
     if (error) {
       console.log(error);
-      $.msg("机场签到Cookie版", "签到失败", error);
+      $.msg(name, "签到失败", error);
     } else {
       if (data.match(/\"msg\"\:/)) {
-        dataResults(url, cookie, JSON.parse(data).msg);
+        dataResults(url, cookie, JSON.parse(data).msg, name);
         console.log(JSON.parse(data).msg);
       } else {
         console.log(data);
@@ -123,12 +132,13 @@ function checkin(url, cookie) {
   });
 }
 
-function dataResults(url, cookie, checkinMsg) {
+function dataResults(url, cookie, checkinMsg, name) {
   let userPath = url.indexOf("auth/login") != -1 ? "user" : "user/index.php";
   var datarequest = {
     url: url.replace(/(auth|user)\/login(.php)*/g, "") + userPath,
-    header: { Cookie: cookie }
+    headers: { Cookie: cookie }
   };
+  console.log(datarequest)
   $.get(datarequest, (error, response, data) => {
     let resultData = "";
     let result = [];
@@ -177,7 +187,7 @@ function dataResults(url, cookie, checkinMsg) {
       }
     }
     let flowMsg = resultData == "" ? "流量信息获取失败" : resultData;
-    $.msg("机场签到Cookie版", checkinMsg, flowMsg);
+    $.msg(name, checkinMsg, flowMsg);
   });
 }
 
@@ -196,7 +206,7 @@ function getCookie() {
   }
 }
 
-//chavyleung
+//From chavyleung's Env.js
 function Env(s) {
   (this.name = s),
     (this.data = null),
