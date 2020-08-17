@@ -1,9 +1,9 @@
 /*
 小鸡模拟器存档续期脚本
 
-更新时间: 2020.6.1 10:40
+更新时间: 2020.8.15 16:08
 脚本兼容: QuantumultX(其它自测)
-电报频道: @哇哈哈
+电报频道: @tgbmqy
 
 说明：
 打开小鸡模拟器->管理->存档管理，如通知成功获取续期参数, 则可以使用此续期脚本.
@@ -21,10 +21,10 @@ QuantumultX 本地脚本配置:
 
 [rewrite_local]
 # 获取续期参数
-^https?:\/\/client\.vgabc\.com\/clientapi\/ url script-request-body bmqy/xjmnq/renew.js
+^https?:\/\/client\.xiaoji001\.com\/clientapi\/ url script-request-body bmqy/xjmnq/renew.js
 
 [mitm] 
-hostname= client.vgabc.com
+hostname= client.xiaoji001.com
 */
 
 var ScriptTitle = '小鸡模拟器存档续期';
@@ -41,7 +41,7 @@ function renew() {
 var data = parseJsonstr2FormData($nobyda.read(CookieKey));
 
   var bonus = {
-    url: 'https://client.vgabc.com/clientapi/',
+    url: 'http://client.xiaoji001.com/clientapi/',
     body: data,
     headers:{
       Cookie: 'think_language=zh-Hans-CN',
@@ -68,7 +68,7 @@ var data = parseJsonstr2FormData($nobyda.read(CookieKey));
 
 function GetRenewParameter() {
   try {
-    if ($request.body && $request.url.match(/client\.vgabc\.com/)) {
+    if ($request.body && $request.url.match(/client\.xiaoji001\.com/)) {
       var data = parseFormData2Json($request.body);
       if(data && data.ticket){
         var CookieValue = {
