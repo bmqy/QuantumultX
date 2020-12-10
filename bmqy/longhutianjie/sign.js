@@ -50,12 +50,12 @@ var data = parseJsonstr2FormData($nobyda.read(TokenKey));
     body: `{"data":{"projectId":"A0533837-3739-4A68-AB47-B160F7524502"}}`
   };
   $nobyda.post(bonus, function(error, response, data) {
+    console.log(data, 'data');
     if (error) {
       $nobyda.notify(ScriptTitle, "请求失败 ‼️‼️", error)
     } else {
       data = JSON.parse(data);
       
-      $nobyda.notify(ScriptTitle, "", "res: "+ JSON.stringify(data));
       if (data && data.code) {
         $nobyda.notify(ScriptTitle, "", date.getMonth() + 1 + "月" + date.getDate() + "日, 成功 🎉")
       } else {
