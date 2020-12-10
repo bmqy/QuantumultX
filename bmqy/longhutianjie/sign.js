@@ -54,7 +54,9 @@ var data = parseJsonstr2FormData($nobyda.read(TokenKey));
       $nobyda.notify(ScriptTitle, "请求失败 ‼️‼️", error)
     } else {
       data = JSON.parse(data);
-      if (data && data.status) {
+      
+      $nobyda.notify(ScriptTitle, "", "res: "+ JSON.stringify(data));
+      if (data && data.code) {
         $nobyda.notify(ScriptTitle, "", date.getMonth() + 1 + "月" + date.getDate() + "日, 成功 🎉")
       } else {
         $nobyda.notify(ScriptTitle, "", "脚本待更新 ‼️‼️")
