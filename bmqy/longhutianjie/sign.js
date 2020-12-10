@@ -1,7 +1,7 @@
 /*
 龙湖天街微信小程序签到脚本
 
-更新时间: 2020-12-10 11:12:03
+更新时间: 2020-12-10 11:34:10
 脚本兼容: QuantumultX(其它自测)
 电报频道: @tgbmqy
 
@@ -72,7 +72,7 @@ function GetToken() {
     if ($request.headers && $request.url.match(/c2-openapi\.longfor\.com/)) {
       var TokenValue = $request.headers['token'];
       var UserKeyValue = $request.headers['userkey'];
-      if ($nobyda.read(TokenKey) && $nobyda.read(UserKey)) {
+      /* if ($nobyda.read(TokenKey) && $nobyda.read(UserKey)) {
         if ($nobyda.read(TokenKey) != TokenValue) {
           var token = $nobyda.write(TokenValue, TokenKey);
           if (!token) {
@@ -89,7 +89,7 @@ function GetToken() {
             $nobyda.notify("", "", "更新" + ScriptTitle + "UserKey成功 🎉");
           }
         }
-      } else {
+      } else { */
         var token = $nobyda.write(TokenValue, TokenKey);
         var userkey = $nobyda.write(UserKeyValue, UserKey);
         if (!token) {
@@ -102,7 +102,7 @@ function GetToken() {
         } else {
           $nobyda.notify("", "", "首次写入" + ScriptTitle + "UserKey成功 🎉");
         }
-      }
+      /* } */
     } else {
       $nobyda.notify(ScriptTitle + "写入参数失败", "", "请检查匹配URL或配置内脚本类型 ‼️");
     }
