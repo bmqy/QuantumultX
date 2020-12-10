@@ -42,8 +42,8 @@ function sign() {
   var bonus = {
     url: 'https://c2-openapi.longfor.com/riyuehu-miniapp-service-prod/ryh/sign/submit',
     headers: {
-      userkey: $nobyda.read(UserKey),
-      token: $nobyda.read(TokenKey),
+      'userkey': $nobyda.read(UserKey),
+      'token': $nobyda.read(TokenKey),
       'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.18(0x17001231) NetType/WIFI Language/zh_CN',
       'Referer': `https://servicewechat.com/wx50282644351869da/201/page-frame.html`,
     },
@@ -72,7 +72,7 @@ function GetToken() {
     if ($request.headers && $request.url.match(/c2-openapi\.longfor\.com/)) {
       var TokenValue = $request.headers['token'];
       var UserKeyValue = $request.headers['userkey'];
-      if ($nobyda.read(TokenKey) || $nobyda.read(UserKey)) {
+      if ($nobyda.read(TokenKey) && $nobyda.read(UserKey)) {
         if ($nobyda.read(TokenKey) != TokenValue) {
           var token = $nobyda.write(TokenValue, TokenKey);
           if (!token) {
