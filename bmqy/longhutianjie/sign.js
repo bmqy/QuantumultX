@@ -45,6 +45,7 @@ function sign() {
       'userkey': $nobyda.read(UserKey),
       'token': $nobyda.read(TokenKey),
       'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.18(0x17001231) NetType/WIFI Language/zh_CN',
+      'X-Gaia-Api-Key' : `5241a44c-bc94-4c5f-abb6-0d3aa995012e`,
       'Referer': `https://servicewechat.com/wx50282644351869da/201/page-frame.html`,
     },
     body: `{"data":{"projectId":"A0533837-3739-4A68-AB47-B160F7524502"}}`
@@ -70,10 +71,9 @@ function sign() {
 function GetToken() {
   try {
     if ($request.headers && $request.url.match(/c2-openapi\.longfor\.com/)) {
-      console.log($request);
       var TokenValue = $request.headers['token'];
       var UserKeyValue = $request.headers['userkey'];
-      /* if ($nobyda.read(TokenKey) && $nobyda.read(UserKey)) {
+      if ($nobyda.read(TokenKey) && $nobyda.read(UserKey)) {
         if ($nobyda.read(TokenKey) != TokenValue) {
           var token = $nobyda.write(TokenValue, TokenKey);
           if (!token) {
@@ -90,7 +90,7 @@ function GetToken() {
             $nobyda.notify("", "", "更新" + ScriptTitle + "UserKey成功 🎉");
           }
         }
-      } else { */
+      } else {
         var token = $nobyda.write(TokenValue, TokenKey);
         var userkey = $nobyda.write(UserKeyValue, UserKey);
         if (!token) {
@@ -103,7 +103,7 @@ function GetToken() {
         } else {
           $nobyda.notify("", "", "首次写入" + ScriptTitle + "UserKey成功 🎉");
         }
-      /* } */
+      }
     } else {
       $nobyda.notify(ScriptTitle + "写入参数失败", "", "请检查匹配URL或配置内脚本类型 ‼️");
     }
