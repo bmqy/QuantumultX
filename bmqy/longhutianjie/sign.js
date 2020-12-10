@@ -72,7 +72,7 @@ function GetToken() {
     if ($request.headers && $request.url.match(/c2-openapi\.longfor\.com/)) {
       var TokenValue = $request.headers['token'];
       var UserKeyValue = $request.headers['userkey'];
-      if ($nobyda.read(TokenKey)) {
+      if ($nobyda.read(TokenKey) || $nobyda.read(UserKey)) {
         if ($nobyda.read(TokenKey) != TokenValue) {
           var token = $nobyda.write(TokenValue, TokenKey);
           if (!token) {
@@ -81,7 +81,6 @@ function GetToken() {
             $nobyda.notify("", "", "更新" + ScriptTitle + "Token成功 🎉");
           }
         }
-      } else if ($nobyda.read(UserKey)) {
         if ($nobyda.read(UserKey) != UserKeyValue) {
           var userkey = $nobyda.write(UserKeyValue, UserKey);
           if (!userkey) {
