@@ -29,6 +29,7 @@ hostname= c2-openapi.longfor.com
 
 var ScriptTitle = '龙湖天街微信小程序签到';
 var TokenKey = 'TokenLongHuTianJieSign';
+var UserKey = 'UserKeyLongHuTianJieSign';
 var $nobyda = nobyda();
 var date = new Date();
 if ($nobyda.isRequest) {
@@ -38,11 +39,10 @@ sign();
 }
 
 function sign() {
-var data = parseJsonstr2FormData($nobyda.read(TokenKey));
-
   var bonus = {
     url: 'https://c2-openapi.longfor.com/riyuehu-miniapp-service-prod/ryh/sign/submit',
     headers: {
+      userkey: $nobyda.read(UserKey),
       token: $nobyda.read(TokenKey),
       'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.18(0x17001231) NetType/WIFI Language/zh_CN',
       'Referer': `https://servicewechat.com/wx50282644351869da/201/page-frame.html`,
@@ -71,6 +71,7 @@ function GetToken() {
   try {
     if ($request.headers && $request.url.match(/c2-openapi\.longfor\.com/)) {
       var TokenValue = $request.headers['token'];
+      var UserKeyValue = $request.headers['userkey'];
       if ($nobyda.read(TokenKey)) {
         if ($nobyda.read(TokenKey) != TokenValue) {
           var token = $nobyda.write(TokenValue, TokenKey);
@@ -80,12 +81,27 @@ function GetToken() {
             $nobyda.notify("", "", "更新" + ScriptTitle + "Token成功 🎉");
           }
         }
+      } else if ($nobyda.read(UserKey)) {
+        if ($nobyda.read(UserKey) != UserKeyValue) {
+          var userkey = $nobyda.write(UserKeyValue, UserKey);
+          if (!userkey) {
+            $nobyda.notify("", "", "更新" + ScriptTitle + "UserKey失败 ‼️");
+          } else {
+            $nobyda.notify("", "", "更新" + ScriptTitle + "UserKey成功 🎉");
+          }
+        }
       } else {
         var token = $nobyda.write(TokenValue, TokenKey);
+        var userkey = $nobyda.write(UserKeyValue, UserKey);
         if (!token) {
           $nobyda.notify("", "", "首次写入" + ScriptTitle + "Token失败 ‼️");
         } else {
           $nobyda.notify("", "", "首次写入" + ScriptTitle + "Token成功 🎉");
+        }
+        if (!userkey) {
+          $nobyda.notify("", "", "首次写入" + ScriptTitle + "UserKey失败 ‼️");
+        } else {
+          $nobyda.notify("", "", "首次写入" + ScriptTitle + "UserKey成功 🎉");
         }
       }
     } else {
