@@ -1,7 +1,7 @@
 /*
 龙湖天街微信小程序签到脚本
 
-更新时间: 2020.12.9 22:08
+更新时间: 2020.12.10 10:55
 脚本兼容: QuantumultX(其它自测)
 电报频道: @tgbmqy
 
@@ -17,7 +17,7 @@ QuantumultX 本地脚本配置:
 
 [task_local]
 # 小鸡模拟器存档续期
-0 7 1,15 * * bmqy/longhutianjie/sign.js
+0 10 * * * bmqy/longhutianjie/sign.js
 
 [rewrite_local]
 # 获取续期参数
