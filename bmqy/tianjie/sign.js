@@ -30,12 +30,14 @@ hostname= c2-openapi.longfor.com
 var ScriptTitle = '天街微信小程序签到';
 var TokenKey = 'TokenTianJieSign';
 var UserKey = 'UserKeyTianJieSign';
+var XGaiaApiKey = 'XGaiaApiKeyTianJieSign';
+var Project = 'ProjectTianJieSign';
 var $nobyda = nobyda();
 var date = new Date();
 if ($nobyda.isRequest) {
-    GetToken();
+  GetParameter();
 } else {
-sign();
+  sign();
 }
 
 function sign() {
@@ -45,9 +47,10 @@ function sign() {
       'userkey': $nobyda.read(UserKey),
       'token': $nobyda.read(TokenKey),
       'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.18(0x17001231) NetType/WIFI Language/zh_CN',
+      'X-Gaia-Api-Key' : $nobyda.read(XGaiaApiKey),
       'Referer': `https://servicewechat.com/wx50282644351869da/201/page-frame.html`,
     },
-    body: `{"data":{"projectId":"A0533837-3739-4A68-AB47-B160F7524502"}}`
+    body: `{"data":{"projectId":"${$nobyda.read(Project)}"}}`
   };
   $nobyda.post(bonus, function(error, response, data) {
     console.log(data, 'data');
@@ -67,30 +70,51 @@ function sign() {
 }
 
 
-function GetToken() {
+function GetParameter() {
   try {
     if ($request.headers && $request.url.match(/openapi\.longfor\.com/)) {
       var TokenValue = $request.headers['token'];
       var UserKeyValue = $request.headers['userkey'];
+      var XGaiaApiKeyValue = $request.headers['X-Gaia-Api-Key'];
+      var aParam = [];
       if (TokenValue && $nobyda.read(TokenKey) != TokenValue) {
-        var token = $nobyda.write(TokenValue, TokenKey);
-        if (!token) {
-          $nobyda.notify("", "", "写入" + ScriptTitle + "Token失败 ‼️");
-        } else {
-          $nobyda.notify("", "", "写入" + ScriptTitle + "Token成功 🎉");
+        var writeResult = $nobyda.write(TokenValue, TokenKey);
+        if (!writeResult) {
+          aParam.push('token');
         }
       }
       if (UserKeyValue && $nobyda.read(UserKey) != UserKeyValue) {
-        var userk = $nobyda.write(UserKeyValue, UserKey);
-        if (!userk) {
-          $nobyda.notify("", "", "写入" + ScriptTitle + "UserKey失败 ‼️");
-        } else {
-          $nobyda.notify("", "", "写入" + ScriptTitle + "UserKey成功 🎉");
+        var writeResult = $nobyda.write(UserKeyValue, UserKey);
+        if (!writeResult) {
+          aParam.push('UserKey');
         }
+      }
+      if (XGaiaApiKeyValue && $nobyda.read(XGaiaApiKey) != XGaiaApiKeyValue) {
+        var writeResult = $nobyda.write(XGaiaApiKeyValue, XGaiaApiKey);
+        if (!writeResult) {
+          aParam.push('XGaiaApiKey');
+        }
+      }
+
+      if ($request.body) {
+        var reqBody = parseFormData2Json($request.body);      
+        if (reqBody && reqBody.data && reqBody.data.projectId) {
+          var projectId = reqBody.data.projectId;
+          var writeResult = $nobyda.write(projectId, Project);
+          if (!writeResult) {
+            aParam.push('projectId');
+          }
+        }
+      }
+      
+      if(aParam.length == 0){
+        $nobyda.notify("", "", "写入" + ScriptTitle + "参数成功 🎉");
+      } else {
+        $nobyda.notify("", "", "写入" + ScriptTitle + "参数失败："+ aParam.join('、') +" ‼️");
       }
     } else {
       $nobyda.notify(ScriptTitle + "写入参数失败", "", "请检查匹配URL或配置内脚本类型 ‼️");
-    }
+    }    
   } catch (eor) {
     $nobyda.notify(ScriptTitle + "写入参数失败", "", "未知错误 ‼️")
   }
