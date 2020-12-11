@@ -80,6 +80,7 @@ function GetParameter() {
       var reWrite = false;
       if (TokenValue && $nobyda.read(TokenKey) != TokenValue) {
         reWrite = true;
+        console.log('更新token');
         var writeResult = $nobyda.write(TokenValue, TokenKey);
         if (!writeResult) {
           aParam.push('token');
@@ -87,6 +88,7 @@ function GetParameter() {
       }
       if (UserKeyValue && $nobyda.read(UserKey) != UserKeyValue) {
         reWrite = true;
+        console.log('更新UserKey');
         var writeResult = $nobyda.write(UserKeyValue, UserKey);
         if (!writeResult) {
           aParam.push('UserKey');
@@ -94,6 +96,7 @@ function GetParameter() {
       }
       if (XGaiaApiKeyValue && $nobyda.read(XGaiaApiKey) != XGaiaApiKeyValue) {
         reWrite = true;
+        console.log('更新XGaiaApiKey');
         var writeResult = $nobyda.write(XGaiaApiKeyValue, XGaiaApiKey);
         if (!writeResult) {
           aParam.push('XGaiaApiKey');
@@ -106,6 +109,7 @@ function GetParameter() {
           var projectId = reqBody.data.projectId;
           if (projectId && $nobyda.read(Project) != projectId) {
             reWrite = true;
+            console.log('更新project');
             var writeResult = $nobyda.write(projectId, Project);
             if (!writeResult) {
               aParam.push('projectId');
