@@ -70,7 +70,7 @@ function sign() {
 
 function GetToken() {
   try {
-    if ($request.headers && $request.url.match(/c2\-openapi\.longfor\.com.*calendar/)) {
+    if ($request.headers && $request.url.match(/c2-openapi\.longfor\.com.*calendar/)) {
       var TokenValue = $request.headers['token'];
       var UserKeyValue = $request.headers['userkey'];
       if ($nobyda.read(TokenKey) && $nobyda.read(UserKey)) {
