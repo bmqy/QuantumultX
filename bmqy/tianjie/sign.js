@@ -73,31 +73,16 @@ function GetToken() {
     if ($request.headers && $request.url.match(/openapi\.longfor\.com/)) {
       var TokenValue = $request.headers['token'];
       var UserKeyValue = $request.headers['userkey'];
-      if ($nobyda.read(TokenKey) && $nobyda.read(UserKey)) {
-        if ($nobyda.read(TokenKey) != TokenValue) {
-          var token = $nobyda.write(TokenValue, TokenKey);
-          if (!token) {
-            $nobyda.notify("", "", "更新" + ScriptTitle + "Token失败 ‼️");
-          } else {
-            $nobyda.notify("", "", "更新" + ScriptTitle + "Token成功 🎉");
-          }
-        }
-        if ($nobyda.read(UserKey) != UserKeyValue) {
-          var userk = $nobyda.write(UserKeyValue, UserKey);
-          if (!userk) {
-            $nobyda.notify("", "", "更新" + ScriptTitle + "UserKey失败 ‼️");
-          } else {
-            $nobyda.notify("", "", "更新" + ScriptTitle + "UserKey成功 🎉");
-          }
-        }
-      } else {
+      if ($nobyda.read(TokenKey) != TokenValue) {
         var token = $nobyda.write(TokenValue, TokenKey);
-        var userk = $nobyda.write(UserKeyValue, UserKey);
         if (!token) {
           $nobyda.notify("", "", "写入" + ScriptTitle + "Token失败 ‼️");
         } else {
           $nobyda.notify("", "", "写入" + ScriptTitle + "Token成功 🎉");
         }
+      }
+      if ($nobyda.read(UserKey) != UserKeyValue) {
+        var userk = $nobyda.write(UserKeyValue, UserKey);
         if (!userk) {
           $nobyda.notify("", "", "写入" + ScriptTitle + "UserKey失败 ‼️");
         } else {
