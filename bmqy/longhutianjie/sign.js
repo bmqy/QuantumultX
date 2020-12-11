@@ -1,12 +1,12 @@
 /*
-龙湖天街微信小程序签到脚本
+天街微信小程序签到脚本
 
 更新时间: 2020-12-11 08:26:54
 脚本兼容: QuantumultX(其它自测)
 电报频道: @tgbmqy
 
 说明：
-打开龙湖天街微信小程序->签到积分，如通知成功获取token, 则可以使用此续期脚本.
+打开天街微信小程序->签到积分，如通知成功获取token, 则可以使用此续期脚本.
 获取token后, 请将获取token禁用并移除主机名，以免产生不必要的MITM.
 
 脚本将在每天10点执行。 您可以修改执行时间。
@@ -21,15 +21,15 @@ QuantumultX 本地脚本配置:
 
 [rewrite_local]
 # 获取续期参数
-^https?:\/\/c2-openapi\.longfor\.com url script-request-body bmqy/longhutianjie/sign.js
+^https?:\/\/c2-openapi\.longfor\.com url script-request-body bmqy/tianjie/sign.js
 
 [mitm] 
 hostname= c2-openapi.longfor.com
 */
 
-var ScriptTitle = '龙湖天街微信小程序签到';
-var TokenKey = 'TokenLongHuTianJieSign';
-var UserKey = 'UserKeyLongHuTianJieSign';
+var ScriptTitle = '天街微信小程序签到';
+var TokenKey = 'TokenTianJieSign';
+var UserKey = 'UserKeyTianJieSign';
 var $nobyda = nobyda();
 var date = new Date();
 if ($nobyda.isRequest) {
