@@ -70,7 +70,7 @@ function sign() {
 
 function GetToken() {
   try {
-    if ($request.headers && $request.url.match(/c2-openapi\.longfor\.com.*calendar/)) {
+    if ($request.headers && $request.url.match(/openapi\.longfor\.com.*calendar/)) {
       var TokenValue = $request.headers['token'];
       var UserKeyValue = $request.headers['userkey'];
       if ($nobyda.read(TokenKey) && $nobyda.read(UserKey)) {
@@ -83,8 +83,8 @@ function GetToken() {
           }
         }
         if ($nobyda.read(UserKey) != UserKeyValue) {
-          var userkey = $nobyda.write(UserKeyValue, UserKey);
-          if (!userkey) {
+          var userk = $nobyda.write(UserKeyValue, UserKey);
+          if (!userk) {
             $nobyda.notify("", "", "更新" + ScriptTitle + "UserKey失败 ‼️");
           } else {
             $nobyda.notify("", "", "更新" + ScriptTitle + "UserKey成功 🎉");
@@ -92,16 +92,16 @@ function GetToken() {
         }
       } else {
         var token = $nobyda.write(TokenValue, TokenKey);
-        var userkey = $nobyda.write(UserKeyValue, UserKey);
+        var userk = $nobyda.write(UserKeyValue, UserKey);
         if (!token) {
-          $nobyda.notify("", "", "首次写入" + ScriptTitle + "Token失败 ‼️");
+          $nobyda.notify("", "", "写入" + ScriptTitle + "Token失败 ‼️");
         } else {
-          $nobyda.notify("", "", "首次写入" + ScriptTitle + "Token成功 🎉");
+          $nobyda.notify("", "", "写入" + ScriptTitle + "Token成功 🎉");
         }
-        if (!userkey) {
-          $nobyda.notify("", "", "首次写入" + ScriptTitle + "UserKey失败 ‼️");
+        if (!userk) {
+          $nobyda.notify("", "", "写入" + ScriptTitle + "UserKey失败 ‼️");
         } else {
-          $nobyda.notify("", "", "首次写入" + ScriptTitle + "UserKey成功 🎉");
+          $nobyda.notify("", "", "写入" + ScriptTitle + "UserKey成功 🎉");
         }
       }
     } else {
