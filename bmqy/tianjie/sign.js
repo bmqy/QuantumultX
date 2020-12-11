@@ -45,7 +45,6 @@ function sign() {
       'userkey': $nobyda.read(UserKey),
       'token': $nobyda.read(TokenKey),
       'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.18(0x17001231) NetType/WIFI Language/zh_CN',
-      'X-Gaia-Api-Key' : `5241a44c-bc94-4c5f-abb6-0d3aa995012e`,
       'Referer': `https://servicewechat.com/wx50282644351869da/201/page-frame.html`,
     },
     body: `{"data":{"projectId":"A0533837-3739-4A68-AB47-B160F7524502"}}`
