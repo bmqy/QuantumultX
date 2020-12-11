@@ -1,7 +1,7 @@
 /*
 天街微信小程序签到脚本
 
-更新时间: 2020-12-11 12:18:24
+更新时间: 2020-12-11 12:54:45
 脚本兼容: QuantumultX(其它自测)
 电报频道: @tgbmqy
 
@@ -77,19 +77,23 @@ function GetParameter() {
       var UserKeyValue = $request.headers['userkey'];
       var XGaiaApiKeyValue = $request.headers['X-Gaia-Api-Key'];
       var aParam = [];
+      var reWrite = false;
       if (TokenValue && $nobyda.read(TokenKey) != TokenValue) {
+        reWrite = true;
         var writeResult = $nobyda.write(TokenValue, TokenKey);
         if (!writeResult) {
           aParam.push('token');
         }
       }
       if (UserKeyValue && $nobyda.read(UserKey) != UserKeyValue) {
+        reWrite = true;
         var writeResult = $nobyda.write(UserKeyValue, UserKey);
         if (!writeResult) {
           aParam.push('UserKey');
         }
       }
       if (XGaiaApiKeyValue && $nobyda.read(XGaiaApiKey) != XGaiaApiKeyValue) {
+        reWrite = true;
         var writeResult = $nobyda.write(XGaiaApiKeyValue, XGaiaApiKey);
         if (!writeResult) {
           aParam.push('XGaiaApiKey');
@@ -100,17 +104,22 @@ function GetParameter() {
         var reqBody = parseFormData2Json($request.body);      
         if (reqBody && reqBody.data && reqBody.data.projectId) {
           var projectId = reqBody.data.projectId;
-          var writeResult = $nobyda.write(projectId, Project);
-          if (!writeResult) {
-            aParam.push('projectId');
+          if (projectId && $nobyda.read(Project) != projectId) {
+            reWrite = true;
+            var writeResult = $nobyda.write(projectId, Project);
+            if (!writeResult) {
+              aParam.push('projectId');
+            }
           }
         }
       }
       
-      if(aParam.length == 0){
-        $nobyda.notify("", "", "写入" + ScriptTitle + "参数成功 🎉");
-      } else {
-        $nobyda.notify("", "", "写入" + ScriptTitle + "参数失败："+ aParam.join('、') +" ‼️");
+      if(reWrite){
+        if(aParam.length == 0){
+          $nobyda.notify("", "", "写入" + ScriptTitle + "参数成功 🎉");
+        } else {
+          $nobyda.notify("", "", "写入" + ScriptTitle + "参数失败："+ aParam.join('、') +" ‼️");
+        }
       }
     } else {
       $nobyda.notify(ScriptTitle + "写入参数失败", "", "请检查匹配URL或配置内脚本类型 ‼️");
