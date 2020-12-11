@@ -73,7 +73,7 @@ function GetToken() {
     if ($request.headers && $request.url.match(/openapi\.longfor\.com/)) {
       var TokenValue = $request.headers['token'];
       var UserKeyValue = $request.headers['userkey'];
-      if ($nobyda.read(TokenKey) != TokenValue) {
+      if (TokenValue && $nobyda.read(TokenKey) != TokenValue) {
         var token = $nobyda.write(TokenValue, TokenKey);
         if (!token) {
           $nobyda.notify("", "", "写入" + ScriptTitle + "Token失败 ‼️");
@@ -81,7 +81,7 @@ function GetToken() {
           $nobyda.notify("", "", "写入" + ScriptTitle + "Token成功 🎉");
         }
       }
-      if ($nobyda.read(UserKey) != UserKeyValue) {
+      if (UserKeyValue && $nobyda.read(UserKey) != UserKeyValue) {
         var userk = $nobyda.write(UserKeyValue, UserKey);
         if (!userk) {
           $nobyda.notify("", "", "写入" + ScriptTitle + "UserKey失败 ‼️");
