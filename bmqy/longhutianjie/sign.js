@@ -1,7 +1,7 @@
 /*
 龙湖天街微信小程序签到脚本
 
-更新时间: 2020-12-10 11:34:10
+更新时间: 2020-12-11 08:15:24
 脚本兼容: QuantumultX(其它自测)
 电报频道: @tgbmqy
 
@@ -70,7 +70,7 @@ function sign() {
 
 function GetToken() {
   try {
-    if ($request.headers && $request.url.match(/c2-openapi\.longfor\.com/)) {
+    if ($request.headers && $request.url.match(/c2-openapi\.longfor\.com\/riyuehu\-miniapp\-service\-prod\/ryh\/sign\/calendar/)) {
       var TokenValue = $request.headers['token'];
       var UserKeyValue = $request.headers['userkey'];
       if ($nobyda.read(TokenKey) && $nobyda.read(UserKey)) {
