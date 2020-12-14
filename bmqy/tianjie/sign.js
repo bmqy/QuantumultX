@@ -45,22 +45,25 @@ function sign() {
     url: 'https://c2-openapi.longfor.com/riyuehu-miniapp-service-prod/ryh/sign/submit',
     headers: {
       'userkey': $nobyda.read(UserKey),
-      'token': $nobyda.read(TokenKey),
       'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.18(0x17001231) NetType/WIFI Language/zh_CN',
       'X-Gaia-Api-Key' : $nobyda.read(XGaiaApiKey),
-      'Referer': `https://servicewechat.com/wx50282644351869da/201/page-frame.html`,
+      'token': $nobyda.read(TokenKey),
     },
     body: `{"data":{"projectId":"${$nobyda.read(Project)}"}}`
   };
   $nobyda.post(bonus, function(error, response, data) {
-    console.log(data, 'data');
+    console.log(data);
     if (error) {
       $nobyda.notify(ScriptTitle, "请求失败 ‼️‼️", error)
     } else {
-      data = JSON.parse(data);
+      //data = JSON.parse(data);
       
       if (data && data.code) {
-        $nobyda.notify(ScriptTitle, "", date.getMonth() + 1 + "月" + date.getDate() + "日, 成功 🎉")
+        if(data.code == 10000){
+          $nobyda.notify(ScriptTitle, "", date.getMonth() + 1 + "月" + date.getDate() + "日, 获得："+ data.rewardBonusTotal +" 积分 🎉")
+        } else {          
+          $nobyda.notify(ScriptTitle, "", "签到失败："+ data.msg +" ‼️‼️")
+        }
       } else {
         $nobyda.notify(ScriptTitle, "", "脚本待更新 ‼️‼️")
       }
