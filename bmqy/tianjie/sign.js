@@ -72,7 +72,7 @@ function sign() {
 
 function GetParameter() {
   try {
-    if ($request.headers && $request.url.match(/openapi\.longfor\.com/)) {
+    if ($request.headers && $request.url.match(/openapi\.longfor\.com.*calendar/)) {
       var TokenValue = $request.headers['token'];
       var UserKeyValue = $request.headers['userkey'];
       var XGaiaApiKeyValue = $request.headers['X-Gaia-Api-Key'];
