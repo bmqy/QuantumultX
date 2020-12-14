@@ -1,7 +1,7 @@
 /*
 天街微信小程序签到脚本
 
-更新时间: 2020-12-11 12:54:45
+更新时间: 2020-12-14 15:53:34
 脚本兼容: QuantumultX(其它自测)
 电报频道: @tgbmqy
 
@@ -96,7 +96,7 @@ function GetParameter() {
       }
       if (XGaiaApiKeyValue && $nobyda.read(XGaiaApiKey) != XGaiaApiKeyValue) {
         reWrite = true;
-        console.log('更新XGaiaApiKey');
+        console.log('更新XGaiaApiKey: '+ XGaiaApiKeyValue);
         var writeResult = $nobyda.write(XGaiaApiKeyValue, XGaiaApiKey);
         if (!writeResult) {
           aParam.push('XGaiaApiKey');
