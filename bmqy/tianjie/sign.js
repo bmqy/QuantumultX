@@ -106,6 +106,8 @@ function GetParameter() {
         }
       }
 
+        console.log($request.body);
+        console.log(typeof $request.body);
       if ($request.body) {
         var reqBody = parseFormData2Json($request.body);
         console.log(reqBody);
