@@ -107,7 +107,9 @@ function GetParameter() {
       }
 
       if ($request.body) {
-        var reqBody = parseFormData2Json($request.body);      
+        var reqBody = parseFormData2Json($request.body);
+        console.log(reqBody);
+        console.log(typeof reqBody);
         if (reqBody && reqBody.data && reqBody.data.projectId) {
           var projectId = reqBody.data.projectId;
           if (projectId && $nobyda.read(Project) != projectId) {
