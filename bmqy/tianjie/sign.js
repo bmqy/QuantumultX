@@ -35,7 +35,8 @@ var Project = 'ProjectTianJieSign';
 var $nobyda = nobyda();
 var date = new Date();
 if ($nobyda.isRequest) {
-  GetParameter();
+  GetHeaderParameter();
+  GetBodyParameter();
 } else {
   sign();
 }
