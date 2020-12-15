@@ -73,9 +73,9 @@ function sign() {
 }
 
 
-function GetParameter() {
+function GetHeaderParameter() {
   try {
-    if ($request.headers && $request.url.match(/openapi\.longfor\.com/)) {
+    if ($request.headers && $request.url.match(/openapi\.longfor\.com.*calendar/)) {
       var TokenValue = $request.headers['token'];
       var UserKeyValue = $request.headers['userkey'];
       var XGaiaApiKeyValue = $request.headers['X-Gaia-Api-Key'];
@@ -105,38 +105,45 @@ function GetParameter() {
           aParam.push('XGaiaApiKey');
         }
       }
-
-        console.log($request.body);
-        console.log(typeof $request.body);
-      if ($request.body) {
-        var reqBody = parseFormData2Json($request.body);
-        console.log(reqBody);
-        console.log(typeof reqBody);
-        if (reqBody && reqBody.data && reqBody.data.projectId) {
-          var projectId = reqBody.data.projectId;
-          if (projectId && $nobyda.read(Project) != projectId) {
-            reWrite = true;
-            console.log('更新project');
-            var writeResult = $nobyda.write(projectId, Project);
-            if (!writeResult) {
-              aParam.push('projectId');
-            }
-          }
-        }
-      }
       
       if(reWrite){
         if(aParam.length == 0){
-          $nobyda.notify("", "", "写入" + ScriptTitle + "参数成功 🎉");
+          $nobyda.notify("", "", "写入" + ScriptTitle + "token成功 🎉");
         } else {
-          $nobyda.notify("", "", "写入" + ScriptTitle + "参数失败："+ aParam.join('、') +" ‼️");
+          $nobyda.notify("", "", "写入" + ScriptTitle + "token失败："+ aParam.join('、') +" ‼️");
         }
       }
     } else {
-      $nobyda.notify(ScriptTitle + "写入参数失败", "", "请检查匹配URL或配置内脚本类型 ‼️");
+      $nobyda.notify(ScriptTitle + "写入token失败", "", "请检查匹配URL或配置内脚本类型 ‼️");
     }    
   } catch (eor) {
-    $nobyda.notify(ScriptTitle + "写入参数失败", "", "未知错误 ‼️")
+    $nobyda.notify(ScriptTitle + "写入token失败", "", "未知错误 ‼️")
+  }
+  $nobyda.done();
+}
+
+function GetBodyParameter() {
+  try {
+    if ($request.body && $request.url.match(/openapi\.longfor\.com.*calendar/)) {
+      var reqBody = parseFormData2Json($request.body);
+      console.log(reqBody);
+      console.log(typeof reqBody);
+      if (reqBody && reqBody.data && reqBody.data.projectId) {
+        var projectId = reqBody.data.projectId;
+        if (projectId && $nobyda.read(Project) != projectId) {
+          var writeResult = $nobyda.write(projectId, Project);
+          if (!writeResult) {
+            $nobyda.notify("", "", "写入" + ScriptTitle + "项目参数成功 🎉");
+          } else {
+            $nobyda.notify("", "", "写入" + ScriptTitle + "项目参数失败 ‼️");
+          }
+        }
+      }
+    } else {
+      $nobyda.notify(ScriptTitle + "写入项目参数失败", "", "请检查匹配URL或配置内脚本类型 ‼️");
+    }    
+  } catch (eor) {
+    $nobyda.notify(ScriptTitle + "写入项目参数失败", "", "未知错误 ‼️")
   }
   $nobyda.done();
 }
