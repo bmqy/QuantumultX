@@ -1,7 +1,7 @@
 /*
 天街微信小程序签到脚本
 
-更新时间: 2020-12-14 15:53:34
+更新时间: 2020-12-15 12:45:37
 脚本兼容: QuantumultX(其它自测)
 电报频道: @tgbmqy
 
@@ -75,7 +75,7 @@ function sign() {
 
 function GetParameter() {
   try {
-    if ($request.headers && $request.url.match(/openapi\.longfor\.com.*calendar/)) {
+    if ($request.headers && $request.url.match(/openapi\.longfor\.com/)) {
       var TokenValue = $request.headers['token'];
       var UserKeyValue = $request.headers['userkey'];
       var XGaiaApiKeyValue = $request.headers['X-Gaia-Api-Key'];
