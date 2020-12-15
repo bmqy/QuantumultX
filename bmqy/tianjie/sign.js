@@ -76,7 +76,7 @@ function sign() {
 
 function GetHeaderParameter() {
   try {
-    if ($request.headers && $request.url.match(/openapi\.longfor\.com.*calendar/)) {
+    if ($request.headers && $request.url.match(/openapi\.longfor\.com/)) {
       var TokenValue = $request.headers['token'];
       var UserKeyValue = $request.headers['userkey'];
       var XGaiaApiKeyValue = $request.headers['X-Gaia-Api-Key'];
@@ -125,7 +125,7 @@ function GetHeaderParameter() {
 
 function GetBodyParameter() {
   try {
-    if ($request.body && $request.url.match(/openapi\.longfor\.com.*calendar/)) {
+    if ($request.body && $request.url.match(/openapi\.longfor\.com/)) {
       var reqBody = parseFormData2Json($request.body);
       console.log(reqBody);
       console.log(typeof reqBody);
