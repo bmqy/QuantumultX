@@ -125,10 +125,10 @@ function GetHeaderParameter() {
 
 function GetBodyParameter() {
   try {
-    if ($request.body && $request.url.match(/openapi\.longfor\.com/)) {
       var reqBody = JSON.parse($request.body);
       console.log(JSON.stringify(reqBody));
       console.log(typeof reqBody);
+    if ($request.body && $request.url.match(/openapi\.longfor\.com/)) {
       if (reqBody && reqBody.data && reqBody.data.projectId) {
         var projectId = reqBody.data.projectId;
         if (projectId && $nobyda.read(Project) != projectId) {
