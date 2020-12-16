@@ -126,7 +126,7 @@ function GetHeaderParameter() {
 function GetBodyParameter() {
   try {
     if ($request.body && $request.url.match(/openapi\.longfor\.com/)) {
-      var reqBody = parseFormData2Json($request.body);
+      var reqBody = JSON.parse($request.body);
       console.log(JSON.stringify(reqBody));
       console.log(typeof reqBody);
       if (reqBody && reqBody.data && reqBody.data.projectId) {
