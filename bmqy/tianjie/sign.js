@@ -52,7 +52,7 @@ var projectId = $nobyda.read(Project);
       'X-Gaia-Api-Key' : $nobyda.read(XGaiaApiKey),
       'token': $nobyda.read(TokenKey),
     },
-    body: `{"data":{"projectId": ${projectId}}}`
+    body: `{"data":{"projectId":"${projectId}"}}`
 };
   $nobyda.post(bonus, function(error, response, data) {
     console.log(JSON.stringify(bonus));
