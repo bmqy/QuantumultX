@@ -50,9 +50,9 @@ var projectId = $nobyda.read(Project);
       'userkey': $nobyda.read(UserKey),
       'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.18(0x17001231) NetType/WIFI Language/zh_CN`,
       'X-Gaia-Api-Key' : $nobyda.read(XGaiaApiKey),
-      'token': $nobyda.read(TokenKey)},
+      'token': $nobyda.read(TokenKey),
     },
-    body: `{"data":{"projectId": "${projectId}"}}`
+    body: `{"data":{"projectId": ${projectId}}}`
 };
   $nobyda.post(bonus, function(error, response, data) {
     console.log(JSON.stringify(bonus));
