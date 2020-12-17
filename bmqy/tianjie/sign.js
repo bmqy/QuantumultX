@@ -42,6 +42,7 @@ if ($nobyda.isRequest) {
 }
 
 function sign() {
+var projectId = $nobyda.read(Project);
   var bonus = {
     url: 'https://c2-openapi.longfor.com/riyuehu-miniapp-service-prod/ryh/sign/submit',
     headers: {
@@ -52,12 +53,8 @@ function sign() {
       'token': `${$nobyda.read(TokenKey)}`,
       'Referer' : `https://servicewechat.com/wx50282644351869da/203/page-frame.html`,
     },
-    body: {
-      "data":{
-        "projectId": `${$nobyda.read(Project)}`
-      }
-    }
-  };
+    body: `{"data":{"projectId": "${projectId}"}}`
+};
   $nobyda.post(bonus, function(error, response, data) {
     console.log(JSON.stringify(bonus));
     console.log(data);
