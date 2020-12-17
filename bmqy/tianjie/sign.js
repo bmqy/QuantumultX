@@ -46,6 +46,7 @@ var projectId = $nobyda.read(Project);
   var bonus = {
     url: 'https://c2-openapi.longfor.com/riyuehu-miniapp-service-prod/ryh/sign/submit',
     headers: {
+'Content-Type' : `application/json`,
       'X-Longfor-StoreId' : $nobyda.read(Store),
       'userkey': $nobyda.read(UserKey),
       'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.18(0x17001231) NetType/WIFI Language/zh_CN`,
