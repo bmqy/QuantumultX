@@ -14,5 +14,14 @@
       "script": "https://raw.githubusercontent.com/bmqy/QuantumultX/master/bmqy/xjmnq/renew.js",
       "icons": ["https://imgsrc.baidu.com/forum/pic/item/0bd162d9f2d3572cbd11c6e48613632762d0c313.jpg", "https://imgsrc.baidu.com/forum/pic/item/0bd162d9f2d3572cbd11c6e48613632762d0c313.jpg"]
     }
-  ]
+    ,{
+      "id": "xjmnq",
+      "name": "天街微信小程序签到脚本",
+      "keys": ["tianjieSign-StoreId,tianjieSign-token,tianjieSign-userkey,tianjieSign-ApiKey,tianjieSign-projectId"],
+      "author": "@bmqy",
+      "repo": "https://github.com/bmqy/QuantumultX/tree/master/bmqy/tianjie",
+      "script": "https://raw.githubusercontent.com/bmqy/QuantumultX/master/bmqy/xjmnq/renew.js",
+      "icons": ["http://house.china.com.cn/chongqing/UserFiles/20140725/10021433.jpg", "http://house.china.com.cn/chongqing/UserFiles/20140725/10021433.jpg"]
+    }
+  ] 
 }
