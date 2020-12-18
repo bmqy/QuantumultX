@@ -28,11 +28,16 @@ hostname= c2-openapi.longfor.com
 */
 
 var ScriptTitle = '天街微信小程序签到';
-var Store = 'StoreIdTianJieSign';
-var TokenKey = 'TokenTianJieSign';
-var UserKey = 'UserKeyTianJieSign';
-var XGaiaApiKey = 'XGaiaApiKeyTianJieSign';
-var Project = 'ProjectTianJieSign';
+var ScriptParamPrefix = 'tianjieSign';
+var ScriptHeaderParam = {
+    'X-Longfor-StoreId': 'StoreId',
+    'token': 'token',
+    'userkey': 'userkey',
+    'X-Gaia-Api-Key': 'ApiKey',
+  },
+  ScriptBodyParam = {
+    'projectId': 'projectId'
+  };
 var $nobyda = nobyda();
 var date = new Date();
 if ($nobyda.isRequest) {
@@ -42,19 +47,18 @@ if ($nobyda.isRequest) {
 }
 
 function sign() {
-var projectId = $nobyda.read(Project);
   var bonus = {
     url: 'https://c2-openapi.longfor.com/riyuehu-miniapp-service-prod/ryh/sign/submit',
     headers: {
-'Content-Type' : `application/json`,
-      'X-Longfor-StoreId' : $nobyda.read(Store),
-      'userkey': $nobyda.read(UserKey),
-      'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.18(0x17001231) NetType/WIFI Language/zh_CN`,
-      'X-Gaia-Api-Key' : $nobyda.read(XGaiaApiKey),
-      'token': $nobyda.read(TokenKey),
+      'Content-Type' : "application/json",
+      'X-Longfor-StoreId' : $nobyda.read(ScriptHeaderParam['X-Longfor-StoreId']),
+      'userkey': $nobyda.read(ScriptHeaderParam['userkey']),
+      'User-Agent': "Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.18(0x17001231) NetType/WIFI Language/zh_CN",
+      'X-Gaia-Api-Key' : $nobyda.read(ScriptHeaderParam['X-Gaia-Api-Key']),
+      'token': $nobyda.read(ScriptHeaderParam['token']),
     },
-    body: `{"data":{"projectId":"${projectId}"}}`
-};
+    body: `{"data":{"projectId":"${$nobyda.read(ScriptBodyParam["projectId"])}"}}`
+  };
   $nobyda.post(bonus, function(error, response, data) {
     console.log(JSON.stringify(bonus));
     console.log(data);
@@ -74,50 +78,26 @@ var projectId = $nobyda.read(Project);
         $nobyda.notify(ScriptTitle, "", "脚本待更新 ‼️‼️")
       }
     }
-    $nobyda.done();
   })
+  $nobyda.done();
 }
 
 
 function GetParameter() {
   try {
     if ($request.headers && $request.url.match(/sign\/calendar/)) {
-      var StoreValue = $request.headers['X-Longfor-StoreId'];
-      var TokenValue = $request.headers['token'];
-      var UserKeyValue = $request.headers['userkey'];
-      var XGaiaApiKeyValue = $request.headers['X-Gaia-Api-Key'];
       var aParam = [];
       var reWrite = false;
-      if (StoreValue && $nobyda.read(Store) != StoreValue) {
-        reWrite = true;
-        console.log('更新store');
-        var writeResult = $nobyda.write(StoreValue, Store);
-        if (!writeResult) {
-          aParam.push('store');
-        }
-      }
-      if (TokenValue && $nobyda.read(TokenKey) != TokenValue) {
-        reWrite = true;
-        console.log('更新token');
-        var writeResult = $nobyda.write(TokenValue, TokenKey);
-        if (!writeResult) {
-          aParam.push('token');
-        }
-      }
-      if (UserKeyValue && $nobyda.read(UserKey) != UserKeyValue) {
-        reWrite = true;
-        console.log('更新UserKey');
-        var writeResult = $nobyda.write(UserKeyValue, UserKey);
-        if (!writeResult) {
-          aParam.push('UserKey');
-        }
-      }
-      if (XGaiaApiKeyValue && $nobyda.read(XGaiaApiKey) != XGaiaApiKeyValue) {
-        reWrite = true;
-        console.log('更新XGaiaApiKey: '+ XGaiaApiKeyValue);
-        var writeResult = $nobyda.write(XGaiaApiKeyValue, XGaiaApiKey);
-        if (!writeResult) {
-          aParam.push('XGaiaApiKey');
+      for(let k in ScriptHeaderParam){
+        let reqHeaderParam = $request.headers[k];
+        let ScriptHeaderParamKey = `${ScriptParamPrefix}-${ScriptHeaderParam[k]}`;
+        if (reqHeaderParam && $nobyda.read(ScriptHeaderParamKey) != reqHeaderParam) {
+          reWrite = true;
+          console.log(`更新${ScriptHeaderParamKey}`);
+          let writeResult = $nobyda.write(reqHeaderParam, ScriptHeaderParamKey);
+          if (!writeResult) {
+            aParam.push(ScriptHeaderParamKey);
+          }
         }
       }
       
@@ -132,17 +112,19 @@ function GetParameter() {
   } catch (eor) {
     $nobyda.notify(ScriptTitle + "写入token失败", "", "错误"+ JSON.stringify(eor) +" ‼️")
   }
+
   try {
     if ($request.body && $request.url.match(/sign\/today\/info\/query/)) {
       var reqBody = JSON.parse($request.body);
-      if (reqBody && reqBody.data && reqBody.data.projectId) {
-        var projectId = reqBody.data.projectId;
-        if ($nobyda.read(Project) != projectId) {
-          var writeResult = $nobyda.write(projectId, Project);
+      if (reqBody && reqBody.data) {
+        let projectId = reqBody.data.projectId;
+        let projectKey = `${ScriptParamPrefix}-${ScriptBodyParam['projectId']}`;        
+        if (projectId && $nobyda.read(projectKey) != projectId) {
+          let writeResult = $nobyda.write(projectId, projectKey);
           if (!writeResult) {
-            $nobyda.notify("", "", "写入" + ScriptTitle + "项目参数成功 🎉");
-          } else {
             $nobyda.notify("", "", "写入" + ScriptTitle + "项目参数失败 ‼️");
+          } else {
+            $nobyda.notify("", "", "写入" + ScriptTitle + "项目参数成功 🎉");
           }
         }
       }
@@ -150,32 +132,7 @@ function GetParameter() {
   } catch (eor) {
     $nobyda.notify(ScriptTitle + "写入项目参数失败", "", "错误"+ JSON.stringify(eor) +" ‼️")
   }
-
   $nobyda.done();
-}
-
-
-function parseFormData2Json(str){
-  var d = str.split('&');
-  var o = {};
-  d.forEach((e,i)=>{
-    let a = e.split('=');
-    o[a[0]] = a[1];
-  });
-  return o;
-}
-
-function parseJsonstr2FormData(str){
-  var j = JSON.parse(str);
-  var d = '';
-  for(let k in j){
-    if(d == ''){
-      d += k +'='+ j[k];
-    } else {
-      d += '&'+ k +'='+ j[k];
-    }
-  }  
-  return d;
 }
 
 function nobyda() {
