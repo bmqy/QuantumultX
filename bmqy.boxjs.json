@@ -15,7 +15,7 @@
       "icons": ["https://imgsrc.baidu.com/forum/pic/item/0bd162d9f2d3572cbd11c6e48613632762d0c313.jpg", "https://imgsrc.baidu.com/forum/pic/item/0bd162d9f2d3572cbd11c6e48613632762d0c313.jpg"]
     }
     ,{
-      "id": "xjmnq",
+      "id": "tianjie",
       "name": "天街微信小程序签到脚本",
       "keys": ["tianjieSign-StoreId,tianjieSign-token,tianjieSign-userkey,tianjieSign-ApiKey,tianjieSign-projectId"],
       "author": "@bmqy",
