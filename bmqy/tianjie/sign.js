@@ -1,7 +1,7 @@
 /*
 天街微信小程序签到脚本
 
-更新时间: 2020-12-17 17:48:15
+更新时间: 2020-12-18 11:57:44
 脚本兼容: QuantumultX(其它自测)
 电报频道: @tgbmqy
 
@@ -9,7 +9,7 @@
 打开天街微信小程序->签到积分，如通知成功获取token, 则可以使用此续期脚本.
 获取token后, 请将获取token禁用并移除主机名，以免产生不必要的MITM.
 
-脚本将在每天10点执行。 您可以修改执行时间。
+脚本将在每天10:11执行。 您可以修改执行时间。
 
 ************************
 QuantumultX 本地脚本配置:
@@ -17,11 +17,13 @@ QuantumultX 本地脚本配置:
 
 [task_local]
 # 天街微信小程序签到
-0 10 * * * bmqy/longhutianjie/sign.js
+11 10 * * * https://raw.githubusercontent.com/bmqy/QuantumultX/master/bmqy/tianjie/sign.js, tag=小鸡模拟器存档续期, img-url=https://imgsrc.baidu.com/forum/pic/item/0bd162d9f2d3572cbd11c6e48613632762d0c313.jpg, enabled=true
 
 [rewrite_local]
-# 获取签到参数
-^https?:\/\/c2-openapi\.longfor\.com url script-request-body bmqy/tianjie/sign.js
+# 获取签到token
+^https:\/\/c2-openapi\.longfor\.com\/riyuehu-miniapp-service-prod\/ryh\/sign\/calendar url script-request-header https://raw.githubusercontent.com/bmqy/QuantumultX/master/bmqy/tianjie/sign.js
+# 获取签到项目信息
+^https:\/\/c2-openapi\.longfor\.com\/riyuehu-miniapp-service-prod\/ryh\/sign\/today\/info\/query url script-request-body https://raw.githubusercontent.com/bmqy/QuantumultX/master/bmqy/tianjie/sign.js
 
 [mitm] 
 hostname= c2-openapi.longfor.com

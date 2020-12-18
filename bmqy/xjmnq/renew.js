@@ -17,7 +17,7 @@ QuantumultX 本地脚本配置:
 
 [task_local]
 # 小鸡模拟器存档续期
-0 7 1,15 * * bmqy/xjmnq/renew.js
+0 7 1,15 * * https://raw.githubusercontent.com/bmqy/QuantumultX/master/bmqy/xjmnq/renew.js, tag=小鸡模拟器存档续期, img-url=https://imgsrc.baidu.com/forum/pic/item/0bd162d9f2d3572cbd11c6e48613632762d0c313.jpg, enabled=true
 
 [rewrite_local]
 # 获取续期参数
