@@ -17,7 +17,7 @@ QuantumultX 本地脚本配置:
 
 [task_local]
 # 天街微信小程序签到
-11 10 * * * https://raw.githubusercontent.com/bmqy/QuantumultX/master/bmqy/tianjie/sign.js, tag=天街微信小程序, img-url=https://imgsrc.baidu.com/forum/pic/item/0bd162d9f2d3572cbd11c6e48613632762d0c313.jpg, enabled=true
+11 10 * * * https://raw.githubusercontent.com/bmqy/QuantumultX/master/bmqy/tianjie/sign.js, tag=天街微信小程序签到, img-url=https://imgsrc.baidu.com/forum/pic/item/0bd162d9f2d3572cbd11c6e48613632762d0c313.jpg, enabled=true
 
 [rewrite_local]
 # 获取签到token
