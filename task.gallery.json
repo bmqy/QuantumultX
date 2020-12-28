@@ -18,6 +18,7 @@
     "1 0 * * * https://raw.githubusercontent.com/chavyleung/scripts/master/10086/10086.cookie.js, tag=10086, enabled=false",
     "0 9 * * * https://raw.githubusercontent.com/whyour/hundun/master/quanx/jdzz.js, tag=京东赚赚, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdzz.png, enabled=true",
     "15 6 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_syj.js, tag=十元街, enabled=true",
-    "0 */11 6-22 * * * https://raw.githubusercontent.com/ziye12/JavaScript/master/qqread.js, tag=QQ阅读, enabled=true"
+    "0 */11 6-22 * * * https://raw.githubusercontent.com/ziye12/JavaScript/master/qqread.js, tag=QQ阅读, enabled=true",
+    "*/30 0-23 * * * https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js, tag=中青看点, enabled=true"
   ]
 }
