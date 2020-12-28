@@ -70,7 +70,7 @@ function sign() {
       data = JSON.parse(data);
       if (data && data.code) {
         if(data.code == 10000){
-          $nobyda.notify(ScriptTitle, "", date.getMonth() + 1 + "月" + date.getDate() + "日, 获得："+ data.rewardBonusTotal +" 积分 🎉")
+          $nobyda.notify(ScriptTitle, "", date.getMonth() + 1 + "月" + date.getDate() + "日, 获得："+ data.data.rewardBonusTotal +" 积分 🎉")
         } else if(data.code == 30020){
           $nobyda.notify(ScriptTitle, "", data.msg +" ‼️")
         } else {           
