@@ -20,7 +20,7 @@
     "15 6 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_syj.js, tag=十元街, enabled=true",
     "0 */11 6-22 * * * https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/qqreads.js, tag=QQ阅读, enabled=true",
     "*/30 0-23 * * * https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js, tag=中青看点, enabled=true",
-    "2 0 * * * https://raw.githubusercontent.com/chavyleung/scripts/master/zimuzu/zimuzu.js, tag=字幕组, enabled=true"
+    "0 2 0 * * * https://raw.githubusercontent.com/chavyleung/scripts/master/zimuzu/zimuzu.js, tag=字幕组, enabled=true"
     
 
   ]
