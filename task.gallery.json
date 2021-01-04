@@ -2,7 +2,7 @@
   "name": "bmqy's task gallery",
   "description": "QuantumultX's task gallery",
   "task": [
-    "11 10 * * * https://raw.githubusercontent.com/bmqy/QuantumultX/master/bmqy/tianjie/sign.js, tag=天街, enabled=true",
+    "11 10 * * * https://raw.githubusercontent.com/bmqy/QuantumultX/master/bmqy/tianjie/sign.js, tag=天街, enabled=false",
     "5 0,6 * * * https://raw.githubusercontent.com/bmqy/QuantumultX/master/NobyDa/JD-DailyBonus/JD_DailyBonus.js, tag=京东多合一签到, enabled=true",
     "0 3 8 * * * https://raw.githubusercontent.com/bmqy/QuantumultX/master/NobyDa/52pojie-DailyBonus/52pojie.js, tag=52pojie签到, enabled=true",
     "0 7 1,15 * * https://raw.githubusercontent.com/bmqy/QuantumultX/master/bmqy/xjmnq/renew.js, tag=小鸡模拟器存档续期, img-url=https://imgsrc.baidu.com/forum/pic/item/0bd162d9f2d3572cbd11c6e48613632762d0c313.jpg, enabled=true",
@@ -21,7 +21,5 @@
     "0 */11 6-22 * * * https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/qqreads.js, tag=QQ阅读, enabled=true",
     "*/30 0-23 * * * https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js, tag=中青看点, enabled=true",
     "0 2 0 * * * https://raw.githubusercontent.com/chavyleung/scripts/master/zimuzu/zimuzu.js, tag=字幕组, enabled=true"
-    
-
   ]
 }
