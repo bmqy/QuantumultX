@@ -17,7 +17,11 @@
     "15 6-23 * * * https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/appstore/AppMonitor.js, tag=App价格监控, enabled=true",
     "1 0 * * * https://raw.githubusercontent.com/chavyleung/scripts/master/10086/10086.js, tag=10086, enabled=true",
     "0 9 * * * https://raw.githubusercontent.com/whyour/hundun/master/quanx/jdzz.js, tag=京东赚赚, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdzz.png, enabled=true",
+<<<<<<< HEAD
     "15 6 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_syj.js, tag=十元街, enabled=true",
+=======
+    "15 6 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_syj.js, tag=十元街, enabled=true",
+>>>>>>> 130ca641b9190fb9746266d8d66a350f9395104f
     "0 */20 6-22 * * * https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/qqreads.js, tag=QQ阅读, enabled=false",
     "*/30 0-23 * * * https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js, tag=中青看点, enabled=true",
     "0 2 0 * * * https://raw.githubusercontent.com/chavyleung/scripts/master/zimuzu/zimuzu.js, tag=字幕组, enabled=true",
