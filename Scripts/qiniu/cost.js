@@ -28,9 +28,10 @@ hostname= portal.qiniu.com
 */
 const ScriptTitle = '七牛云实时消费金额';
 const Url = `https://portal.qiniu.com/api/gaea/financial/costoverview`;
-const CookieKey = 'qiniu';
+const CookieKey = 'qiniuCost';
 
-const $ = API("qiniuCost", true); // 打开debug环境，打开所有log输出
+const $ = API('qiniu', true); // 打开debug环境，打开所有log输出
+$.log($.env, 'env');
 if($.env.isRequest){
     getCookies();
 } else {
@@ -68,7 +69,7 @@ function getCookies(){
     try {
         if ($request.headers && $request.url.indexOf('costoverview')) {
             console.log($request.headers, 'headers');
-            let reqCookie = $request.headers['Cookie'];
+            let reqCookie = $request.headers['cookie'];
             if (reqCookie && $.read(CookieKey) != reqCookie) {
                 $.write(reqCookie, CookieKey);
                 $.notify("", "", "写入" + ScriptTitle + "cookie成功 🎉");
