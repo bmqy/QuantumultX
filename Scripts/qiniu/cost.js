@@ -69,7 +69,7 @@ function getCookies(){
     try {
         if ($request.headers && $request.url.indexOf('costoverview')!=-1) {
             console.log(JSON.stringify($request.headers), 'headers');
-            let reqCookie = $request.headers['cookie'];
+            let reqCookie = $request.headers['Cookie'];
             if (reqCookie && $.read(CookieKey) != reqCookie) {
                 $.write(reqCookie, CookieKey);
                 $.notify("", "", "写入" + ScriptTitle + "cookie成功 🎉");
