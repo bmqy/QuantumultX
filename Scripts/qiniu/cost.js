@@ -31,7 +31,7 @@ const Url = `https://portal.qiniu.com/api/gaea/financial/costoverview`;
 const CookieKey = 'qiniuCost';
 
 const $ = API('qiniu', true); // 打开debug环境，打开所有log输出
-$.log($.env, 'env');
+$.log(JSON.stringify($.env), 'env');
 if($.env.isRequest){
     getCookies();
 } else {
