@@ -67,12 +67,12 @@ function getCost(){
 function getCookies(){
     try {
         if ($request.headers && $request.url.indexOf('costoverview')) {
+            console.log($request.headers, 'headers');
             let reqCookie = $request.headers['Cookie'];
             if (reqCookie && $.read(CookieKey) != reqCookie) {
                 $.write(reqCookie, CookieKey);
                 $.notify("", "", "写入" + ScriptTitle + "cookie成功 🎉");
-            }
-        
+            }        
         }  
     } catch (err) {
         $.notify(ScriptTitle + "写入cookie失败", "", "错误"+ JSON.stringify(err) +" ‼️")
