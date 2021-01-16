@@ -55,7 +55,7 @@ function getCost(){
         console.log(resp.statusCode + "\n\n" + resp.body);
         let res = JSON.parse(resp.body);
         let data = res.data;
-        $.notify('🥺七牛云CDN实时消费🥺', '', `上次余额：${formatMoney(data.cash_reserve)}\n本次余额：${formatMoney(data.balance)}\n实时费用：${formatMoney(data.cost)}`);
+        $.notify(`🥺${ScriptTitle}🥺`, '', `上次余额：${formatMoney(data.cash_reserve)}\n本次余额：${formatMoney(data.balance)}\n实时费用：${formatMoney(data.cost)}`);
     });
     $.done();
 }
