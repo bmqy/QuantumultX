@@ -47,9 +47,9 @@ function getCost(){
     $.http.get({
         url: Url,
         headers: {
-            'Cookie' : `${$.read(CookieKey)}`,
-            'Referer' : `https://portal.qiniu.com/cdn/overview`,
-            'User-Agent' : `Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/87.0.4280.77 Mobile/15E148 Safari/604.1`,
+            'cookie' : `${$.read(CookieKey)}`,
+            'referer' : `https://portal.qiniu.com/cdn/overview`,
+            'user-agent' : `Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/87.0.4280.77 Mobile/15E148 Safari/604.1`,
         }
     }).then(resp => {        
         console.log(resp.statusCode + "\n\n" + resp.body);
@@ -66,8 +66,9 @@ function getCost(){
  *
  */
 function getCookies(){
+    console.log('111111111111111');
     try {
-        if ($request.headers && $request.url.indexOf('costoverview')) {
+        if ($request.headers && $request.url.indexOf('costoverview')!=-1) {
             console.log($request.headers, 'headers');
             let reqCookie = $request.headers['cookie'];
             if (reqCookie && $.read(CookieKey) != reqCookie) {
