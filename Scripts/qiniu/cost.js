@@ -26,8 +26,8 @@ QuantumultX 本地脚本配置:
 [mitm] 
 hostname= portal.qiniu.com
 */
-
-const url = `https://portal.qiniu.com/api/gaea/financial/costoverview`;
+const ScriptTitle = '七牛云实时消费金额';
+const Url = `https://portal.qiniu.com/api/gaea/financial/costoverview`;
 const CookieKey = 'qiniu';
 
 const $ = API("qiniuCost", true); // 打开debug环境，打开所有log输出
@@ -44,7 +44,7 @@ if($.env.isRequest){
  */
 function getCost(){
     $.http.get({
-        url: url,
+        url: Url,
         headers: {
             'Cookie' : `${$.read(CookieKey)}`,
             'Referer' : `https://portal.qiniu.com/cdn/overview`,
@@ -65,20 +65,18 @@ function getCost(){
  *
  */
 function getCookies(){
-    $.http.get({
-        url: url,        
-        // 一些钩子函数
-        events: {
-            onRequest: (method, options) => {
-                // 请求之前可以做一些操作，比如log，注意method和options无法修改
-                console.log(options, method);
+    try {
+        if ($request.headers && $request.url.indexOf('costoverview')) {
+            let reqCookie = $request.headers['Cookie'];
+            if (reqCookie && $.read(CookieKey) != reqCookie) {
+                $.write(reqCookie, CookieKey);
+                $.notify("", "", "写入" + ScriptTitle + "cookie成功 🎉");
             }
-        }
-    }).then(resp => {
-        // do something
-    });
-
-    $.done();
+        
+        }  
+    } catch (err) {
+        $.notify(ScriptTitle + "写入cookie失败", "", "错误"+ JSON.stringify(err) +" ‼️")
+    }
 }
 
 /**
