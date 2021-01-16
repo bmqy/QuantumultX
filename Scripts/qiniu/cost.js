@@ -66,10 +66,9 @@ function getCost(){
  *
  */
 function getCookies(){
-    console.log('111111111111111');
     try {
         if ($request.headers && $request.url.indexOf('costoverview')!=-1) {
-            console.log($request.headers, 'headers');
+            console.log(JSON.stringify($request.headers), 'headers');
             let reqCookie = $request.headers['cookie'];
             if (reqCookie && $.read(CookieKey) != reqCookie) {
                 $.write(reqCookie, CookieKey);
