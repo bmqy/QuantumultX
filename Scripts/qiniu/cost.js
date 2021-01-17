@@ -1,15 +1,14 @@
 /*
 七牛云CDN实时消费金额通知脚本
 
-更新时间: 2020-12-18 11:57:44
+更新时间: 2021-01-17 12:25:44
 脚本兼容: QuantumultX(其它自测)
 电报频道: @tgbmqy
 
 说明：
-打开天街微信小程序->签到积分，如通知成功获取token, 则可以使用此续期脚本.
-获取token后, 请将获取token禁用并移除主机名，以免产生不必要的MITM.
+打开七牛云管理后台→费用→实施费用，提示获取cookie成功后，可正常使用任务脚本。
 
-脚本将在每天10:11执行。 您可以修改执行时间。
+脚本将在每6小时执行一次。 您可以修改执行时间。
 
 ************************
 QuantumultX 本地脚本配置:
@@ -43,7 +42,6 @@ if($.env.isRequest){
  *
  */
 function getCost(){
-    console.log($.read(CookieKey));
     $.http.get({
         url: Url,
         headers: {
@@ -51,8 +49,7 @@ function getCost(){
             'Referer' : `https://portal.qiniu.com/cdn/overview`,
             'User-Agent' : `Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/87.0.4280.77 Mobile/15E148 Safari/604.1`,
         }
-    }).then(resp => {        
-        console.log(JSON.stringify(resp), 'resp');
+    }).then(resp => {
         let res = JSON.parse(resp.body);
         let data = res.data;
         $.notify(`🥺${ScriptTitle}🥺`, '', `上次余额：${formatMoney(data.cash_reserve)}\n本次余额：${formatMoney(data.balance)}\n实时费用：${formatMoney(data.cost)}`);
