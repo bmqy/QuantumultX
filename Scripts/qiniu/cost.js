@@ -44,6 +44,7 @@ if($.env.isRequest){
  *
  */
 function getCost(){
+    console.log($.read(CookieKey));
     $.http.get({
         url: Url,
         headers: {
