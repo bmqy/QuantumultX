@@ -31,7 +31,6 @@ const Url = `https://portal.qiniu.com/api/gaea/financial/costoverview`;
 const CookieKey = 'qiniuCost';
 
 const $ = API('qiniu', true); // 打开debug环境，打开所有log输出
-$.log(JSON.stringify($.env), 'env');
 if($.env.isRequest){
     getCookies();
 } else {
@@ -48,12 +47,12 @@ function getCost(){
     $.http.get({
         url: Url,
         headers: {
-            'cookie' : `${$.read(CookieKey)}`,
-            'referer' : `https://portal.qiniu.com/cdn/overview`,
-            'user-agent' : `Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/87.0.4280.77 Mobile/15E148 Safari/604.1`,
+            'Cookie' : `${$.read(CookieKey)}`,
+            'Referer' : `https://portal.qiniu.com/cdn/overview`,
+            'User-Agent' : `Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/87.0.4280.77 Mobile/15E148 Safari/604.1`,
         }
     }).then(resp => {        
-        console.log(resp.statusCode + "\n\n" + resp.body);
+        console.log(JSON.stringify(resp), 'resp');
         let res = JSON.parse(resp.body);
         let data = res.data;
         $.notify(`🥺${ScriptTitle}🥺`, '', `上次余额：${formatMoney(data.cash_reserve)}\n本次余额：${formatMoney(data.balance)}\n实时费用：${formatMoney(data.cost)}`);
