@@ -23,5 +23,14 @@
       "script": "https://raw.githubusercontent.com/bmqy/QuantumultX/master/bmqy/xjmnq/renew.js",
       "icons": ["http://house.china.com.cn/chongqing/UserFiles/20140725/10021433.jpg", "http://house.china.com.cn/chongqing/UserFiles/20140725/10021433.jpg"]
     }
+    ,{
+      "id": "qiniuyun",
+      "name": "七牛云实时消费金额脚本",
+      "keys": ["qiniuCost"],
+      "author": "@bmqy",
+      "repo": "https://github.com/bmqy/QuantumultX/tree/master/Script/qiniu",
+      "script": "https://raw.githubusercontent.com/bmqy/QuantumultX/master/Script/qiniu/cost.js",
+      "icons": ["http://tvax2.sinaimg.cn/crop.455.455.1137.1137.1024/9e0444ddly8fnqcc0bp58j21kw1kwq54.jpg", "http://tvax2.sinaimg.cn/crop.455.455.1137.1137.1024/9e0444ddly8fnqcc0bp58j21kw1kwq54.jpg"]
+    }
   ] 
 }
