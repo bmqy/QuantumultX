@@ -26,7 +26,7 @@
     ,{
       "id": "qiniuyun",
       "name": "七牛云实时消费金额脚本",
-      "keys": ["qiniu.qiniuCost"],
+      "keys": ["qiniu"],
       "author": "@bmqy",
       "repo": "https://github.com/bmqy/QuantumultX/tree/master/Scripts/qiniu",
       "script": "https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/qiniu/cost.js",
