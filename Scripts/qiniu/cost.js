@@ -29,8 +29,6 @@ const ScriptTitle = '七牛云实时消费金额';
 const Url = `https://portal.qiniu.com/api/gaea/financial/costoverview`;
 const CookieKey = 'qiniuCost';
 const $ = API('qiniu'); // 打开debug环境，打开所有log输出
-console.log(JSON.stringify($.cache), 'cache');
-console.log(JSON.stringify($prefs), '$prefs');
 if($.env.isRequest){
     getCookies();
 } else {
