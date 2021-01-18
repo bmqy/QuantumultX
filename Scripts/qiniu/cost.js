@@ -28,7 +28,7 @@ hostname= portal.qiniu.com
 const ScriptTitle = '七牛云实时消费金额';
 const Url = `https://portal.qiniu.com/api/gaea/financial/costoverview`;
 const CookieKey = 'qiniuCost';
-const $ = API('qiniu', true); // 打开debug环境，打开所有log输出
+const $ = API('qiniu'); // 打开debug环境，打开所有log输出
 if($.env.isRequest){
     getCookies();
 } else {
@@ -51,7 +51,7 @@ function getCost(){
     }).then(resp => {
         let res = JSON.parse(resp.body);
         let data = res.data;
-        $.notify(`🥺${ScriptTitle}🥺`, '', `上次余额：${formatMoney(data.cash_reserve)}\n本次余额：${formatMoney(data.balance)}\n实时费用：${formatMoney(data.cost)}`);
+        $.notify(`🥺${ScriptTitle}🥺`, '', `现金余额：${formatMoney(data.cash_reserve)}\n可用额度：${formatMoney(data.balance)}\n实时消费：${formatMoney(data.cost)}`);
         $.done();
     }).catch(err => {
         $.done();
