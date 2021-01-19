@@ -52,9 +52,9 @@ function getCost(){
         let res = JSON.parse(resp.body);
         let data = res.data;
         let content = [
-            `实时消费：${formatMoney(data.cost)}`
-            ,`可用额度：${formatMoney(data.balance)}`
-            ,`现金余额：${formatMoney(data.cash_reserve)}`
+            `实时消费：${formatMoney(data.cost)} ⏰`
+            ,`可用额度：${formatMoney(data.balance)} 💵`
+            ,`现金余额：${formatMoney(data.cash_reserve)} 💰`
         ];
         $.notify(`🥺${ScriptTitle}🥺`, '', content.join('\n'));
         $.done();
@@ -87,10 +87,10 @@ function getCookies(){
  * 格式化钱数
  *
  * @param {Number} number 钱数
- * @return {String} ￥1.00 💵
+ * @return {String} ￥1.00 
  */
 function formatMoney(num){
-    return `￥${(parseInt(num) / 10000).toFixed(2)} 💵`;
+    return `￥${(parseInt(num) / 10000).toFixed(2)}`;
 }
 
 /* OpenApi */
