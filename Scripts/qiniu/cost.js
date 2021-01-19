@@ -51,10 +51,12 @@ function getCost(){
     }).then(resp => {
         let res = JSON.parse(resp.body);
         let data = res.data;
-        let content = `实时消费：${formatMoney(data.cost)}
-        可用额度：${formatMoney(data.balance)}
-        现金余额：${formatMoney(data.cash_reserve)}`;
-        $.notify(`🥺${ScriptTitle}🥺`, '', content);
+        let content = [
+            `实时消费：${formatMoney(data.cost)}`
+            ,`可用额度：${formatMoney(data.balance)}`
+            ,`现金余额：${formatMoney(data.cash_reserve)}`
+        ];
+        $.notify(`🥺${ScriptTitle}🥺`, '', content.join('\n'));
         $.done();
     }).catch(err => {
         $.done();
