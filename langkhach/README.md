@@ -1,6 +1,0 @@
-## 说明
-
-### 1. Working Copy食用方法：
-
-> 利用 GitHub Education 解锁 Working Copy    
-> 启用此脚本后再 Safari 打开 https://workingcopy.app/education/ 点击「tap here to access all pro features.」中的 here 跳转到 Working Copy，登录自己的 GitHub 账号即可解锁
