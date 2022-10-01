@@ -43,7 +43,6 @@
       ],
       "keys": [
         "@AppRaven监控.appraven_cookie",
-        "@AppRaven监控.appraven_region",
         "@AppRaven监控.appraven_uid",
         "@AppRaven监控.app_monitor"
       ],
@@ -57,16 +56,6 @@
           "autoGrow": true,
           "rows": 2,
           "desc": "ID与区域分隔符支持 空格/:|_-，但不同App之间请用中文逗号\"，\"分隔。"
-        },
-        {
-          "id": "@AppRaven监控.appraven_region",
-          "name": "AppRaven监控区域",
-          "val": "ua",
-          "placeholder": "通过抓包获取，例如，cn/ua/us/au",
-          "type": "textarea",
-          "autoGrow": true,
-          "rows": 1,
-          "desc": "请填写AppRaven 区域"
         },
         {
           "id": "@AppRaven监控.appraven_uid",

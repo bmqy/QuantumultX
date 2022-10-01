@@ -39,10 +39,6 @@ app可单独设置区域，未单独设置区域，则采用reg默认区域
 
 */
 const $ = new API('AppRaven监控');
-let appraven_region = 'cn';
-if ($.read('appraven_region') != '' && $.read('appraven_region') != undefined) {
-	appraven_region = $.read('appraven_region');
-}
 let appraven_cookie = '';
 if ($.read('appraven_cookie') != '' && $.read('appraven_cookie') != undefined) {
 	appraven_cookie = $.read('appraven_cookie');
@@ -64,7 +60,7 @@ async function get_app() {
 		}
 		let infos = {};
 		let config = {
-			url: `https://appraven.net/AppRaven/app?t=${appraven_region}&qt=wish&pg=0&uid=${appraven_uid}&pg=0`,
+			url: `https://appraven.net/AppRaven/app?t=ua&qt=wish&pg=0&uid=${appraven_uid}&pg=0`,
 			headers: {
 				'Accept-Encoding': `br;q=1.0, gzip;q=0.9, deflate;q=0.8`,
 				Cookie: appraven_cookie,
@@ -97,7 +93,7 @@ async function get_app() {
 									app_monitor[x.application_id].v
 								) {
 									notifys.push(
-										`${flag(appraven_region)}🧩${x.app_title}:升级【${
+										`${flag('cn')}🧩${x.app_title}:升级【${
 											x.activity.info
 										}】`
 									);
@@ -106,7 +102,7 @@ async function get_app() {
 									x.price !== app_monitor[x.application_id].p
 								) {
 									notifys.push(
-										`${flag(appraven_region)}💰${x.app_title}:价格【${
+										`${flag('cn')}💰${x.app_title}:价格【${
 											x.price
 										}】`
 									);
@@ -114,12 +110,12 @@ async function get_app() {
 							}
 						} else {
 							notifys.push(
-								`${flag(k)}🧩${x.app_title}:版本【${
+								`${flag('cn')}🧩${x.app_title}:版本【${
 									x.activity.info
 								}】`
 							);
 							notifys.push(
-								`${flag(k)}💰${x.app_title}:价格【${x.price}】`
+								`${flag('cn')}💰${x.app_title}:价格【${x.price}】`
 							);
 						}
 					});
