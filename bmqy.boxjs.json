@@ -44,7 +44,8 @@
       "keys": [
         "@AppRaven监控.appraven_cookie",
         "@AppRaven监控.appraven_region",
-        "@AppRaven监控.appraven_uid"
+        "@AppRaven监控.appraven_uid",
+        "@AppRaven监控.app_monitor"
       ],
       "settings": [
         {
