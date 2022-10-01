@@ -78,13 +78,13 @@
           "desc": "请填写一个AppRaven uid"
         }
       ],
-      "author": "@t.me/QuanXApp群友",
-      "repo": "https://github.com/evilbutcher/Quantumult_X/tree/master/check_in/appstore",
+      "author": "@evilbutcher",
+      "repo": "https://github.com/bmqy/QuantumultX/master/Scripts/appstore/appraven",
       "icons": [
         "https://raw.githubusercontent.com/Orz-3/mini/master/Apple.png",
         "https://raw.githubusercontent.com/Orz-3/task/master/appstore.png"
       ],
-      "script": "https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/appstore/AppMonitor.js"
+      "script": "https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/appstore/appraven.js"
     }
   ] 
 }
