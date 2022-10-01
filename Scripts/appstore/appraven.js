@@ -97,7 +97,7 @@ async function get_app() {
 									app_monitor[x.application_id].v
 								) {
 									notifys.push(
-										`${flag(k)}🧩${x.app_title}:升级【${
+										`${flag(appraven_region)}🧩${x.app_title}:升级【${
 											x.activity.info
 										}】`
 									);
@@ -106,7 +106,7 @@ async function get_app() {
 									x.price !== app_monitor[x.application_id].p
 								) {
 									notifys.push(
-										`${flag(k)}💰${x.app_title}:价格【${
+										`${flag(appraven_region)}💰${x.app_title}:价格【${
 											x.price
 										}】`
 									);
