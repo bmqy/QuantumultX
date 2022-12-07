@@ -1,80 +1,147 @@
 {
-  "id": "bmqy.app.sub",
-  "name": "bmqy应用订阅",
-  "author": "@bmqy",
-  "icon": "https://avatars2.githubusercontent.com/u/7834895",
-  "repo": "https://github.com/bmqy/QuantumultX",
-  "apps": [
-    {
-      "id": "xjmnq",
-      "name": "小鸡模拟器存档续期脚本",
-      "keys": ["CookieXJMNQRenew"],
-      "author": "@bmqy",
-      "repo": "https://github.com/bmqy/QuantumultX/tree/master/Scripts/xjmnq",
-      "script": "https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/xjmnq/renew.js",
-      "icons": ["https://imgsrc.baidu.com/forum/pic/item/0bd162d9f2d3572cbd11c6e48613632762d0c313.jpg", "https://imgsrc.baidu.com/forum/pic/item/0bd162d9f2d3572cbd11c6e48613632762d0c313.jpg"]
-    }
-    ,{
-      "id": "tianjie",
-      "name": "天街微信小程序签到脚本",
-      "keys": ["tianjieSign-StoreId","tianjieSign-token","tianjieSign-userkey","tianjieSign-ApiKey","tianjieSign-projectId"],
-      "author": "@bmqy",
-      "repo": "https://github.com/bmqy/QuantumultX/tree/master/Scripts/tianjie",
-      "script": "https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/xjmnq/renew.js",
-      "icons": ["http://house.china.com.cn/chongqing/UserFiles/20140725/10021433.jpg", "http://house.china.com.cn/chongqing/UserFiles/20140725/10021433.jpg"]
-    }
-    ,{
-      "id": "qiniuyun",
-      "name": "七牛云实时消费金额脚本",
-      "keys": ["@qiniu.qiniuCost"],
-      "author": "@bmqy",
-      "repo": "https://github.com/bmqy/QuantumultX/tree/master/Scripts/qiniu",
-      "script": "https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/qiniu/cost.js",
-      "icons": ["http://tvax2.sinaimg.cn/crop.455.455.1137.1137.1024/9e0444ddly8fnqcc0bp58j21kw1kwq54.jpg", "http://tvax2.sinaimg.cn/crop.455.455.1137.1137.1024/9e0444ddly8fnqcc0bp58j21kw1kwq54.jpg"]
-    }
-    ,{
-      "id": "appraven",
-      "name": "AppRaven监控",
-      "descs_html": [
-        "点此直达【<a href=\"https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/appstore/appraven.js\">脚本地址</a>】",
-        "修改自evilbutcher AppMonitor，支持BoxJs。",
-        "填写AppRaven的cookie、地区、uid",
-        "@AppRaven监控.app_monitor为本地记录的监控相关信息，可以忽略"
-      ],
-      "keys": [
-        "@AppRaven监控.appraven_cookie",
-        "@AppRaven监控.appraven_uid",
-        "@AppRaven监控.app_monitor"
-      ],
-      "settings": [
-        {
-          "id": "@AppRaven监控.appraven_cookie",
-          "name": "AppRaven cookie",
-          "val": "",
-          "placeholder": "例如，JSESSIONID=E9AC33DF92C86F62EEE56UIDFDED78D78DFE)",
-          "type": "textarea",
-          "autoGrow": true,
-          "rows": 2,
-          "desc": "ID与区域分隔符支持 空格/:|_-，但不同App之间请用中文逗号\"，\"分隔。"
-        },
-        {
-          "id": "@AppRaven监控.appraven_uid",
-          "name": "AppRaven uid",
-          "val": "",
-          "placeholder": "通过抓包获取，例如，6157fa43d9cc125ff3a46bb8",
-          "type": "textarea",
-          "autoGrow": true,
-          "rows": 1,
-          "desc": "请填写一个AppRaven uid"
-        }
-      ],
-      "author": "@evilbutcher",
-      "repo": "https://github.com/bmqy/QuantumultX/master/Scripts/appstore/appraven",
-      "icons": [
-        "https://raw.githubusercontent.com/Orz-3/mini/master/Apple.png",
-        "https://raw.githubusercontent.com/Orz-3/task/master/appstore.png"
-      ],
-      "script": "https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/appstore/appraven.js"
-    }
-  ] 
+	"id": "bmqy.app.sub",
+	"name": "bmqy应用订阅",
+	"author": "@bmqy",
+	"icon": "https://avatars2.githubusercontent.com/u/7834895",
+	"repo": "https://github.com/bmqy/QuantumultX",
+	"apps": [
+		{
+			"id": "xjmnq",
+			"name": "小鸡模拟器存档续期脚本",
+			"keys": ["CookieXJMNQRenew"],
+			"settings": [
+				{
+					"id": "CookieXJMNQRenew",
+					"name": "小鸡模拟器cookie",
+					"val": "",
+					"placeholder": "例如，JSESSIONID=E9AC33DF92C86F62EEE56UIDFDED78D78DFE)",
+					"type": "textarea",
+					"autoGrow": true,
+					"rows": 2,
+					"desc": ""
+				}
+			],
+			"author": "@bmqy",
+			"repo": "https://github.com/bmqy/QuantumultX/tree/master/Scripts/xjmnq",
+			"script": "https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/xjmnq/renew.js",
+			"icons": [
+				"https://imgsrc.baidu.com/forum/pic/item/0bd162d9f2d3572cbd11c6e48613632762d0c313.jpg",
+				"https://imgsrc.baidu.com/forum/pic/item/0bd162d9f2d3572cbd11c6e48613632762d0c313.jpg"
+			]
+		},
+		{
+			"id": "tianjie",
+			"name": "天街微信小程序签到脚本",
+			"keys": [
+				"tianjieSign-StoreId",
+				"tianjieSign-token",
+				"tianjieSign-userkey",
+				"tianjieSign-ApiKey",
+				"tianjieSign-projectId"
+			],
+			"settings": [
+				{
+					"id": "tianjieSign-StoreId",
+					"name": "StoreId",
+					"val": "",
+					"placeholder": "StoreId",
+					"type": "text",
+					"autoGrow": true,
+					"rows": 2,
+					"desc": ""
+				},
+				{
+					"id": "tianjieSign-token",
+					"name": "token",
+					"val": "",
+					"placeholder": "token",
+					"type": "text",
+					"autoGrow": true,
+					"rows": 2,
+					"desc": ""
+				},
+				{
+					"id": "tianjieSign-userkey",
+					"name": "userkey",
+					"val": "",
+					"placeholder": "userkey",
+					"type": "text",
+					"autoGrow": true,
+					"rows": 2,
+					"desc": ""
+				},
+				{
+					"id": "tianjieSign-ApiKey",
+					"name": "ApiKey",
+					"val": "",
+					"placeholder": "ApiKey",
+					"type": "text",
+					"autoGrow": true,
+					"rows": 2,
+					"desc": ""
+				},
+				{
+					"id": "tianjieSign-projectId",
+					"name": "projectId",
+					"val": "",
+					"placeholder": "projectId",
+					"type": "text",
+					"autoGrow": true,
+					"rows": 2,
+					"desc": ""
+				}
+			],
+			"author": "@bmqy",
+			"repo": "https://github.com/bmqy/QuantumultX/tree/master/Scripts/tianjie",
+			"script": "https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/xjmnq/renew.js",
+			"icons": [
+				"http://house.china.com.cn/chongqing/UserFiles/20140725/10021433.jpg",
+				"http://house.china.com.cn/chongqing/UserFiles/20140725/10021433.jpg"
+			]
+		},
+		{
+			"id": "appraven",
+			"name": "AppRaven监控",
+			"descs_html": [
+				"点此直达【<a href=\"https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/appstore/appraven.js\">脚本地址</a>】",
+				"修改自evilbutcher AppMonitor，支持BoxJs。",
+				"填写AppRaven的cookie、地区、uid",
+				"@AppRaven监控.app_monitor为本地记录的监控相关信息，可以忽略"
+			],
+			"keys": [
+				"@AppRaven监控.appraven_cookie",
+				"@AppRaven监控.appraven_uid",
+				"@AppRaven监控.app_monitor"
+			],
+			"settings": [
+				{
+					"id": "@AppRaven监控.appraven_cookie",
+					"name": "AppRaven cookie",
+					"val": "",
+					"placeholder": "例如，JSESSIONID=E9AC33DF92C86F62EEE56UIDFDED78D78DFE)",
+					"type": "textarea",
+					"autoGrow": true,
+					"rows": 2,
+					"desc": "ID与区域分隔符支持 空格/:|_-，但不同App之间请用中文逗号\"，\"分隔。"
+				},
+				{
+					"id": "@AppRaven监控.appraven_uid",
+					"name": "AppRaven uid",
+					"val": "",
+					"placeholder": "通过抓包获取，例如，6157fa43d9cc125ff3a46bb8",
+					"type": "textarea",
+					"autoGrow": true,
+					"rows": 1,
+					"desc": "请填写一个AppRaven uid"
+				}
+			],
+			"author": "@evilbutcher",
+			"repo": "https://github.com/bmqy/QuantumultX/master/Scripts/appstore/appraven",
+			"icons": [
+				"https://raw.githubusercontent.com/Orz-3/mini/master/Apple.png",
+				"https://raw.githubusercontent.com/Orz-3/task/master/appstore.png"
+			],
+			"script": "https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/appstore/appraven.js"
+		}
+	]
 }
