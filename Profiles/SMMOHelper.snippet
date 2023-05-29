@@ -1,0 +1,9 @@
+# SMMOHelper
+# simple-mmo.com助手脚本
+# 更新日期：2023年05月27日
+# 目前功能：
+; 自动更新玩家bio，记录等级升级日志
+hostname=api.simple-mmo.com
+
+https:\/\/api\.simple\-mmo\.com\/api\/action\/travel\/\d+ url script-response-body https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/simple-mmo/smmo_helper.js
+https:\/\/api\.simple\-mmo\.com\/api\/action\/travel\/\d+ url script-request-body https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/simple-mmo/smmo_helper.js
