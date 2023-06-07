@@ -58,7 +58,8 @@ async function checkPlayerInfo(){
     let playerResponse = await $.http.post(options);
     let playerInfoBody = JSON.parse(playerResponse.body);
     let oldBio = await getPlayerBio(playerInfoBody);
-    if(playerInfoBody.level%$.read('levelStep') === 0){
+    let levelStep = $.read('levelStep') || 100;
+    if(playerInfoBody.level%levelStep === 0){
         $.read('level')!=playerInfoBody.level && $.notify(`${$.name}`, `玩家：${playerInfoBody.username}`, `${formatPlayerData(playerInfoBody)}`, { "media-url": `https://simple-mmo.com${playerInfoBody.avatar}` });
         updatePlayerBio(playerInfoBody, getNewBio(playerInfoBody, oldBio));
     }
