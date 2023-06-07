@@ -62,6 +62,7 @@ async function checkPlayerInfo(){
     if(playerInfoBody.level%levelStep === 0){
         $.read('level')!=playerInfoBody.level && $.notify(`${$.name}`, `玩家：${playerInfoBody.username}`, `${formatPlayerData(playerInfoBody)}`, { "media-url": `https://simple-mmo.com${playerInfoBody.avatar}` });
         updatePlayerBio(playerInfoBody, getNewBio(playerInfoBody, oldBio));
+        $.notify(`${$.name}`, ``, `Bio已更新，请查看日志`);
     }
     $.done();
 }
@@ -116,7 +117,6 @@ async function updatePlayerBio(data, bio){
 
     let response = await $.http.post(options);
     $.log(response)
-    $.notify(`${$.name}`, ``, `Bio已更新，请查看日志`);
 }
 
 async function getPlayerBio(data){

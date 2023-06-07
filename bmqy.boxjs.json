@@ -157,7 +157,7 @@
 				{
 					"id": "@SMMOHelper.levelStep",
 					"name": "等级",
-					"val": "100",
+					"val": "",
 					"placeholder": "level，默认：100",
 					"type": "text",
 					"autoGrow": true,
