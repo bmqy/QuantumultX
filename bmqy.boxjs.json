@@ -142,6 +142,36 @@
 				"https://raw.githubusercontent.com/Orz-3/task/master/appstore.png"
 			],
 			"script": "https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/appstore/appraven.js"
+		},
+		{
+			"id": "smmo-helper",
+			"name": "SMMO助手",
+			"descs_html": [
+				"点此直达【<a href=\"https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/simple-mmo/smmo_helper.js\">脚本地址</a>】",
+				"Simple-mmo游戏助手"
+			],
+			"keys": [
+				"@SMMOHelper.levelStep"
+			],
+			"settings": [
+				{
+					"id": "@SMMOHelper.levelStep",
+					"name": "等级",
+					"val": "100",
+					"placeholder": "level，默认：100",
+					"type": "text",
+					"autoGrow": true,
+					"rows": 1,
+					"desc": "请填写每隔多少级更新一次Bio"
+				}
+			],
+			"author": "@bmqy",
+			"repo": "https://github.com/bmqy/QuantumultX/master/Scripts/simple-mmo",
+			"icons": [
+				"https://raw.githubusercontent.com/Orz-3/mini/master/Apple.png",
+				"https://raw.githubusercontent.com/Orz-3/task/master/appstore.png"
+			],
+			"script": "https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/simple-mmo/smmo_helper.js"
 		}
 	]
 }
