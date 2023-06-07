@@ -168,6 +168,7 @@
 			"author": "@bmqy",
 			"repo": "https://github.com/bmqy/QuantumultX/master/Scripts/simple-mmo",
 			"icons": [
+				"https://web.simple-mmo.com/img/dragon-head-trans.png",
 				"https://web.simple-mmo.com/img/dragon-head-trans.png"
 			],
 			"script": "https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/simple-mmo/smmo_helper.js"
