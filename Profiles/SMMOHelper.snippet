@@ -1,9 +1,10 @@
 # SMMOHelper
 # simple-mmo.com助手脚本
 # 创建：2023年06月07日
-# 更新：2023年06月08日
+# 更新：2023年06月09日
 # 目前功能：
 ; 自动更新玩家bio，记录等级升级日志
+; 金币捐赠，默认：2000
 # 食用方法:
 ; 1、添加quanx配置片段，并启用
 ; 2、进入游戏，手动提交更新bio(不需要修改直接提交保存即可)
@@ -23,3 +24,6 @@ https:\/\/api\.simple\-mmo\.com\/api\/quest\/\d+\/[a-z0-9]+ url script-response-
 https:\/\/api\.simple\-mmo\.com\/api\/npcs\/attack\/\d+\/[a-z0-9]+ url script-response-body https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/simple-mmo/smmo_helper.js
 # crafting
 https:\/\/simple\-mmo\.com\/api\/crafting\/material\/gather\/\d+ url script-response-body https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/simple-mmo/smmo_helper.js
+
+# Gold Donation Default: 2000
+https:\/\/simple\-mmo\.com\/orphanage\?new_page_refresh\=true url response-body (title: 'Gold Donation',[\r\n\s]+html: 'Make a donation to the poor orphanage to help the less fortunate\.',[\r\n\s]+)(input: 'number',) response-body $1input: 'number',inputValue: 2000,
