@@ -5,6 +5,7 @@
 # 目前功能：
 ; 自动更新玩家bio，记录等级升级日志
 ; 金币捐赠，默认：2000
+; 工作次数，默认：10
 # 食用方法:
 ; 1、添加quanx配置片段，并启用
 ; 2、进入游戏，手动提交更新bio(不需要修改直接提交保存即可)
@@ -27,3 +28,6 @@ https:\/\/simple\-mmo\.com\/api\/crafting\/material\/gather\/\d+ url script-resp
 
 # Gold Donation Default: 2000
 https:\/\/simple\-mmo\.com\/orphanage\?new_page_refresh\=true url response-body (title: 'Gold Donation',[\r\n\s]+html: 'Make a donation to the poor orphanage to help the less fortunate\.',[\r\n\s]+)(input: 'number',) response-body $1input: 'number',inputValue: 2000,
+
+# How long do you want to work? Default: 10
+https:\/\/simple\-mmo\.com\/jobs\/view/\d+\?new_page_refresh\=true url response-body inputValue: 1, response-body inputValue: 10,
