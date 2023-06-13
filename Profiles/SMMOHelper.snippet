@@ -27,7 +27,7 @@ https:\/\/api\.simple\-mmo\.com\/api\/npcs\/attack\/\d+\/[a-z0-9]+ url script-re
 https:\/\/simple\-mmo\.com\/api\/crafting\/material\/gather\/\d+ url script-response-body https://raw.githubusercontent.com/bmqy/QuantumultX/master/Scripts/simple-mmo/smmo_helper.js
 
 # Gold Donation Default: 2000
-https:\/\/(web\.)?simple\-mmo\.com\/orphanage\?new_page_refresh\=true url response-body (title: 'Gold Donation',[\r\n\s]+html: 'Make a donation to the poor orphanage to help the less fortunate\.',[\r\n\s]+)(input: 'number',) response-body $1input: 'number',inputValue: 2000,
+https:\/\/(web\.)?simple\-mmo\.com\/orphanage(\?new_page_refresh\=true)? url response-body (title: 'Gold Donation',[\r\n\s]+html: 'Make a donation to the poor orphanage to help the less fortunate\.',[\r\n\s]+)(input: 'number',) response-body $1input: 'number',inputValue: 2000,
 
 # How long do you want to work? Default: 10
 https:\/\/(web\.)?simple\-mmo\.com\/jobs\/view/\d+\?new_page_refresh\=true url response-body inputValue: 1, response-body inputValue: 10,
