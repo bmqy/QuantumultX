@@ -63,6 +63,7 @@ async function checkPlayerInfo(){
         updatePlayerBio(playerInfoBody, getNewBio(playerInfoBody, oldBio));
         $.read('level')!=playerInfoBody.level && $.notify(`${$.name}`, `玩家：${playerInfoBody.username}`, `${formatPlayerData(playerInfoBody)}\nBio：已更新，请查看日志`, { "media-url": `https://simple-mmo.com${playerInfoBody.avatar}` });
     }
+    $.write(playerInfoBody.level, 'level')
     $.done();
 }
 // 格式化玩家数据
