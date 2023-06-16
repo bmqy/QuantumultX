@@ -37,7 +37,7 @@ function setPlayerToken(){
 
 // 获取玩家信息
 async function checkPlayerInfo(){
-    if(!$.read('cookies') || $.read('xcsrfToken')') || !$.read('apiToken')){
+    if(!$.read('cookies') || $.read('xcsrfToken')')){
         $.notify(`${$.name}`, ``, `请更新Token`);
         $.done();
         return false;
@@ -125,10 +125,9 @@ async function updatePlayerBio(data, bio){
 }
 
 async function getPlayerBio(data){
-    const url = `https://simple-mmo.com/user/view/${data.id}/bio?new_page_refresh=true`;
+    const url = `https://www.simple-mmo.com/user/view/${data.id}/bio?new_page_refresh=true`;
     const headers = {
         'Accept' : `text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8`,
-        'X-SimpleMMO-Token': `${$.read('apiToken')}`,
         'Accept-Encoding' : `gzip, deflate, br`,
         'Connection' : `keep-alive`,
         'User-Agent' : `Mozilla/5.0 (iPhone; CPU iPhone OS 15_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148`,
