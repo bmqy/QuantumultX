@@ -37,6 +37,7 @@ function setPlayerToken(){
 
 // 获取玩家信息
 async function checkPlayerInfo(){
+    if(!$.read('cookies') || !$.read('apiToken'))$.notify(`${$.name}`, ``, `请更新Token`);
     const url = 'https://api.simple-mmo.com/api/main';
     const headers = {
         'Cookie' : `${$.read('cookies')}`,
