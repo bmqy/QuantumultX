@@ -37,7 +37,7 @@ function setPlayerToken(){
 
 // 获取玩家信息
 async function checkPlayerInfo(){
-    if(!$.read('cookies') || !$.read('apiToken')){
+    if(!$.read('cookies') || $.read('xcsrfToken')') || !$.read('apiToken')){
         $.notify(`${$.name}`, ``, `请更新Token`);
         $.done();
         return false;
